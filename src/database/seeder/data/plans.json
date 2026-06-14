@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Free",
+    "tier": "free",
+    "price": 0,
+    "billingCycle": "monthly",
+    "reportLimits": {
+      "brand-overview": 1,
+      "seo-audit": 1,
+      "keyword-analysis": 1,
+      "competitor-comparison": 0,
+      "market-sizing": 0,
+      "financial-health": 0
+    },
+    "apiAccessEnabled": false,
+    "maxUsers": 1,
+    "features": ["3 reports/month", "Basic analytics", "Email support"],
+    "isActive": true
+  },
+  {
+    "name": "Starter",
+    "tier": "starter",
+    "price": 29,
+    "billingCycle": "monthly",
+    "reportLimits": {
+      "brand-overview": 5,
+      "seo-audit": 5,
+      "keyword-analysis": 5,
+      "competitor-comparison": 3,
+      "market-sizing": 2,
+      "financial-health": 2
+    },
+    "apiAccessEnabled": false,
+    "maxUsers": 3,
+    "features": ["20 reports/month", "All report types", "Priority support", "Export to PDF"],
+    "isActive": true
+  },
+  {
+    "name": "Pro",
+    "tier": "pro",
+    "price": 99,
+    "billingCycle": "monthly",
+    "reportLimits": {
+      "brand-overview": 25,
+      "seo-audit": 25,
+      "keyword-analysis": 25,
+      "competitor-comparison": 20,
+      "market-sizing": 15,
+      "financial-health": 15
+    },
+    "apiAccessEnabled": true,
+    "maxUsers": 10,
+    "features": ["100 reports/month", "API access", "Team collaboration", "Custom integrations", "Dedicated support"],
+    "isActive": true
+  },
+  {
+    "name": "Enterprise",
+    "tier": "enterprise",
+    "price": 0,
+    "billingCycle": "monthly",
+    "reportLimits": {
+      "brand-overview": -1,
+      "seo-audit": -1,
+      "keyword-analysis": -1,
+      "competitor-comparison": -1,
+      "market-sizing": -1,
+      "financial-health": -1
+    },
+    "apiAccessEnabled": true,
+    "maxUsers": -1,
+    "features": ["Unlimited reports", "Full API access", "Unlimited users", "Custom models", "SLA guarantee", "White-label option"],
+    "isActive": true
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "openai",
+    "displayName": "OpenAI",
+    "description": "OpenAI GPT models for text generation and AI processing",
+    "category": "ai",
+    "authType": "api_key",
+    "authScope": "organization",
+    "connectorClass": "OpenAI",
+    "isEnabled": true
+  },
+  {
+    "slug": "semrush",
+    "displayName": "Semrush",
+    "description": "SEO keyword research and competitive analysis",
+    "category": "seo",
+    "authType": "api_key",
+    "authScope": "organization",
+    "connectorClass": "Semrush",
+    "isEnabled": true
+  },
+  {
+    "slug": "web-scraper",
+    "displayName": "Web Scraper",
+    "description": "Scrapes website content and metadata",
+    "category": "scraping",
+    "authType": "api_key",
+    "authScope": "organization",
+    "connectorClass": "WebScraper",
+    "isEnabled": true
+  },
+  {
+    "slug": "google",
+    "displayName": "Google",
+    "description": "Google Search and APIs",
+    "category": "analytics",
+    "authType": "oauth2",
+    "authScope": "user",
+    "connectorClass": "Google",
+    "isEnabled": true
+  },
+  {
+    "slug": "logo-picker",
+    "displayName": "Logo Picker",
+    "description": "Internal logo detection and selection service",
+    "category": "scraping",
+    "authType": "none",
+    "authScope": "system",
+    "connectorClass": "LogoPicker",
+    "isEnabled": true
+  },
+  {
+    "slug": "pravatar",
+    "displayName": "Pravatar",
+    "description": "Profile avatar generation service",
+    "category": "storage",
+    "authType": "none",
+    "authScope": "system",
+    "connectorClass": "Pravatar",
+    "isEnabled": true
+  },
+  {
+    "slug": "browserless",
+    "displayName": "Browserless",
+    "description": "Headless browser automation for scraping",
+    "category": "scraping",
+    "authType": "api_key",
+    "authScope": "system",
+    "connectorClass": "Browserless",
+    "isEnabled": true
+  },
+  {
+    "slug": "instagram",
+    "displayName": "Instagram",
+    "description": "Instagram profile statistics, insights, and media data",
+    "category": "social",
+    "authType": "oauth2",
+    "authScope": "user",
+    "connectorClass": "Instagram",
+    "isEnabled": true
+  }
+]

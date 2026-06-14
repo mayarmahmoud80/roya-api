@@ -1,0 +1,64 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-output-schema",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Output schema node",
+        "ar": "عقدة مخطط المخرجات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Declares the structured schema the downstream AI or terminal must produce.",
+        "ar": "يحدد مخطط المخرجات المنظم الذي يجب أن تنتجه العقدة التالية."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "outputSchema",
+      "category": "schema",
+      "builderCategoryKey": "reasoning",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["object", "array", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "schema",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "schema",
+              "ar": "schema"
+            }
+          },
+          "valueType": "schema",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["schema", "object", "any"]
+        }
+      ],
+      "executionRole": "schema",
+      "defaultRequired": true
+    }
+  }
+]

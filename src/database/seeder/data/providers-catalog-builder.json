@@ -1,0 +1,12 @@
+[
+  {
+    "providerKey": "instagram",
+    "displayName": "Instagram",
+    "description": "Instagram profile statistics, insights, and media data",
+    "category": "social",
+    "implClass": "Instagram",
+    "authType": "oauth2",
+    "authScope": "user",
+    "isEnabled": true
+  }
+]

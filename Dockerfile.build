@@ -1,0 +1,42 @@
+# Dockerfile.build
+# -----------------
+# DEV image for roya-plus-api.
+#
+# DEV workflow: build a clean image with no secrets. Environment variables are
+# provided at runtime via Docker --env-file /opt/roya-plus-api/.env.
+# NestJS ConfigModule reads process.env; no .env file is baked into this image.
+#
+# Stack: NestJS 10 (Fastify) + Mongoose. No Prisma step.
+# Node: 20.x (matches package.json engines).
+
+# ---------- builder ----------
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY tsconfig.json ./
+COPY src ./src
+COPY scripts ./scripts
+
+RUN npm run build \
+ && npm prune --omit=dev
+
+# ---------- runtime ----------
+FROM node:20-alpine AS runtime
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY --from=builder --chown=node:node /app/package.json  ./package.json
+COPY --from=builder --chown=node:node /app/node_modules  ./node_modules
+COPY --from=builder --chown=node:node /app/dist          ./dist
+
+USER node
+
+EXPOSE 3000
+
+CMD ["node", "dist/server.js"]

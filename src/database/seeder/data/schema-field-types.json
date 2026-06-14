@@ -1,0 +1,748 @@
+[
+  {
+    "assetType": "schemaFieldType",
+    "slug": "text",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Text",
+        "ar": "نص"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Short single-line text value."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "string",
+      "uiControl": "text",
+      "jsonSchemaType": "string",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "string",
+            "description": "Plain text string",
+            "jsonSchema": { "type": "string" },
+            "sample": "This is a sample text paragraph with multiple sentences.",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "string",
+        "aiInstructionHint": "Return a plain text string"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "rich-text",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Rich Text",
+        "ar": "نص منسق"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Long formatted text value."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "richText",
+      "uiControl": "textarea",
+      "jsonSchemaType": "string",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "string",
+            "description": "Long text string",
+            "jsonSchema": { "type": "string" },
+            "sample": "This is a longer text paragraph with multiple sentences. It can contain detailed information and formatted content.",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "string",
+        "aiInstructionHint": "Return a long text string with detailed information"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "number",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Number",
+        "ar": "رقم"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Numeric value with optional min and max validation."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "number",
+      "uiControl": "number",
+      "jsonSchemaType": "number",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "number",
+            "description": "Numeric value",
+            "jsonSchema": { "type": "number" },
+            "sample": 42.5,
+            "priority": 100
+          },
+          {
+            "formatKey": "string",
+            "description": "Numeric string",
+            "jsonSchema": { "type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?$" },
+            "sample": "42.5",
+            "priority": 50
+          }
+        ],
+        "canonicalFormatKey": "number",
+        "aiInstructionHint": "Return a numeric value, e.g. 42.5"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "boolean",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Boolean",
+        "ar": "منطقي"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "True or false value."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "boolean",
+      "uiControl": "toggle",
+      "jsonSchemaType": "boolean",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "boolean",
+            "description": "Boolean true/false",
+            "jsonSchema": { "type": "boolean" },
+            "sample": true,
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "boolean",
+        "aiInstructionHint": "Return true or false"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "url",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "URL",
+        "ar": "رابط"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web address with URL validation."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "data",
+      "valueType": "url",
+      "uiControl": "url",
+      "jsonSchemaType": "string",
+      "format": "uri",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "url_string",
+            "description": "Full URL string",
+            "jsonSchema": { "type": "string", "format": "uri", "pattern": "^https?://" },
+            "sample": "https://example.com/page",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "url_string",
+        "aiInstructionHint": "Return a full URL starting with https://"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "img",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Image (URL)",
+        "ar": "صورة"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Image URL or uploaded image reference."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "visual",
+      "valueType": "image",
+      "uiControl": "image-picker",
+      "jsonSchemaType": "string",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "url_string",
+            "description": "Image URL",
+            "jsonSchema": { "type": "string", "format": "uri", "pattern": "^https?://" },
+            "sample": "https://example.com/image.jpg",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "url_string",
+        "aiInstructionHint": "Return an absolute https URL to a raster or SVG image"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "list",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "List",
+        "ar": "قائمة"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Ordered collection of values."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "data",
+      "valueType": "array",
+      "uiControl": "list",
+      "jsonSchemaType": "array",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "string_array",
+            "description": "Array of strings",
+            "jsonSchema": { "type": "array", "items": { "type": "string" } },
+            "sample": ["Item 1", "Item 2", "Item 3"],
+            "priority": 100
+          },
+          {
+            "formatKey": "object_array",
+            "description": "Array of objects with text/url properties",
+            "jsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string" },
+                  "url": { "type": "string" }
+                }
+              }
+            },
+            "sample": [
+              { "text": "Item 1", "url": "https://example.com/1" },
+              { "text": "Item 2", "url": "https://example.com/2" }
+            ],
+            "priority": 80
+          }
+        ],
+        "canonicalFormatKey": "string_array",
+        "aiInstructionHint": "Return an array of concise strings"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "object",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Object",
+        "ar": "كائن"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Nested object with child fields."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "data",
+      "valueType": "object",
+      "uiControl": "object-builder",
+      "jsonSchemaType": "object",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "object",
+            "description": "JSON object",
+            "jsonSchema": { "type": "object" },
+            "sample": { "key1": "value1", "key2": "value2" },
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "object",
+        "aiInstructionHint": "Return a JSON object with key-value pairs"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "score",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Score",
+        "ar": "درجة"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Normalized score, usually from 0 to 10."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "data",
+      "valueType": "score",
+      "uiControl": "score",
+      "jsonSchemaType": "number",
+      "min": 0,
+      "max": 10,
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "number",
+            "description": "Simple numeric value (0-10 scale)",
+            "jsonSchema": { "type": "number", "minimum": 0, "maximum": 10 },
+            "sample": 7.5,
+            "priority": 100
+          },
+          {
+            "formatKey": "score_object",
+            "description": "Object with score and optional max",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "score": { "type": "number" },
+                "max": { "type": "number" }
+              },
+              "required": ["score"]
+            },
+            "sample": { "score": 7.5, "max": 10 },
+            "priority": 50
+          },
+          {
+            "formatKey": "string",
+            "description": "Numeric string",
+            "jsonSchema": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+            "sample": "7.5",
+            "priority": 20
+          }
+        ],
+        "canonicalFormatKey": "number",
+        "aiInstructionHint": "Return a decimal number from 0 to 10, e.g. 7.5"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "date",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Date",
+        "ar": "تاريخ"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Calendar date value."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "date",
+      "uiControl": "date",
+      "jsonSchemaType": "string",
+      "format": "date",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "date_string",
+            "description": "ISO date string",
+            "jsonSchema": { "type": "string", "format": "date" },
+            "sample": "2026-05-11",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "date_string",
+        "aiInstructionHint": "Return an ISO date string in format YYYY-MM-DD"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "enum",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Enum",
+        "ar": "اختيار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Single value selected from ordered localized options."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "basic",
+      "valueType": "enum",
+      "uiControl": "select",
+      "jsonSchemaType": "string",
+      "requiresOptions": true,
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "string",
+            "description": "String value from predefined options",
+            "jsonSchema": { "type": "string" },
+            "sample": "option1",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "string",
+        "aiInstructionHint": "Return one of the predefined option values"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "tag",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Tag",
+        "ar": "وسم"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Single short lowercase token."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "data",
+      "valueType": "string",
+      "uiControl": "text",
+      "jsonSchemaType": "string",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "string",
+            "description": "Short lowercase token",
+            "jsonSchema": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "sample": "urgent",
+            "priority": 100
+          },
+          {
+            "formatKey": "string_array",
+            "description": "Array of tags",
+            "jsonSchema": { "type": "array", "items": { "type": "string" } },
+            "sample": ["urgent", "important"],
+            "priority": 80
+          }
+        ],
+        "canonicalFormatKey": "string",
+        "aiInstructionHint": "Return a single short lowercase token, e.g. 'urgent'"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "color",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Color (hex)",
+        "ar": "لون"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Single hex color value."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "visual",
+      "valueType": "string",
+      "uiControl": "color-picker",
+      "jsonSchemaType": "string",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "hex_string",
+            "description": "Hex color string",
+            "jsonSchema": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "sample": "#2C1E73",
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "hex_string",
+        "aiInstructionHint": "Return a hex color code, e.g. #2C1E73"
+      }
+    }
+  },
+  {
+    "assetType": "schemaFieldType",
+    "slug": "color_scheme",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Color Scheme",
+        "ar": "نظام الألوان"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Ordered array of hex colors (palette)."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "visual",
+      "valueType": "array",
+      "uiControl": "color-scheme-picker",
+      "jsonSchemaType": "array",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "hex_array",
+            "description": "Array of hex color strings",
+            "jsonSchema": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "minItems": 1
+            },
+            "sample": ["#2C1E73", "#7B3DD9", "#A855F7"],
+            "priority": 100
+          },
+          {
+            "formatKey": "single_hex",
+            "description": "Single hex color string",
+            "jsonSchema": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "sample": "#2C1E73",
+            "priority": 50
+          },
+          {
+            "formatKey": "object_array",
+            "description": "Array of objects with hex/color/value property",
+            "jsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "hex": { "type": "string" },
+                  "color": { "type": "string" },
+                  "value": { "type": "string" }
+                }
+              }
+            },
+            "sample": [{ "hex": "#2C1E73" }, { "hex": "#7B3DD9" }],
+            "priority": 30
+          },
+          {
+            "formatKey": "rgb_array",
+            "description": "Array of RGB objects",
+            "jsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "r": { "type": "integer", "minimum": 0, "maximum": 255 },
+                  "g": { "type": "integer", "minimum": 0, "maximum": 255 },
+                  "b": { "type": "integer", "minimum": 0, "maximum": 255 }
+                },
+                "required": ["r", "g", "b"]
+              }
+            },
+            "sample": [{ "r": 44, "g": 30, "b": 115 }, { "r": 123, "g": 61, "b": 217 }],
+            "priority": 20
+          }
+        ],
+        "canonicalFormatKey": "hex_array",
+        "aiInstructionHint": "Return an array of hex color codes like [\"#2C1E73\", \"#7B3DD9\"]"
+      }
+    }
+  },
+  {
+  "assetType": "schemaFieldType",
+  "slug": "currency",
+  "name": {
+    "defaultLanguage": "en",
+    "values": { "en": "Currency", "ar": "عملة" }
+  },
+  "description": {
+    "defaultLanguage": "en",
+    "values": { "en": "Monetary amount with a currency code (e.g. SAR, USD)." }
+  },
+  "scope": "global",
+  "status": "active",
+  "metadata": {
+    "category": "financial",
+    "valueType": "object",
+    "uiControl": "currency-picker",
+    "jsonSchemaType": "object",
+    "valueSchemas": {
+      "acceptedFormats": [
+        {
+          "formatKey": "amount_currency_object",
+          "description": "Object with amount and currency code",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "number" },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            },
+            "required": ["amount", "currency"]
+          },
+          "sample": { "amount": 1000, "currency": "SAR" },
+          "priority": 100
+        },
+        {
+          "formatKey": "number",
+          "description": "Plain numeric amount (defaults to SAR)",
+          "jsonSchema": { "type": "number" },
+          "sample": 1000,
+          "priority": 50
+        }
+      ],
+      "canonicalFormatKey": "amount_currency_object",
+      "aiInstructionHint": "Return an object like {\"amount\": 1000, \"currency\": \"SAR\"}"
+    }
+  }
+},
+  {
+    "assetType": "schemaFieldType",
+    "slug": "column_chart",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Column Chart",
+        "ar": "رسم بياني عمودي"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Chart.js bar chart data format."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "category": "chart",
+      "valueType": "object",
+      "uiControl": "chart-builder",
+      "jsonSchemaType": "object",
+      "valueSchemas": {
+        "acceptedFormats": [
+          {
+            "formatKey": "chartjs_bar",
+            "description": "Chart.js bar chart data format",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "labels": { "type": "array", "items": { "type": "string" } },
+                "datasets": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": { "type": "string" },
+                      "data": { "type": "array", "items": { "type": "number" } },
+                      "backgroundColor": { "type": "string" }
+                    },
+                    "required": ["label", "data"]
+                  }
+                }
+              },
+              "required": ["labels", "datasets"]
+            },
+            "sample": {
+              "labels": ["Q1", "Q2", "Q3", "Q4"],
+              "datasets": [
+                { "label": "Revenue", "data": [120, 190, 150, 220], "backgroundColor": "#2563eb" },
+                { "label": "Expenses", "data": [80, 110, 95, 130], "backgroundColor": "#f97316" }
+              ]
+            },
+            "priority": 100
+          }
+        ],
+        "canonicalFormatKey": "chartjs_bar",
+        "aiInstructionHint": "Return Chart.js bar data with labels array and datasets array containing {label, data[], backgroundColor?}"
+      }
+    }
+  }
+]

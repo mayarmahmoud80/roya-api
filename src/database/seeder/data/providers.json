@@ -1,0 +1,114 @@
+[
+  {
+    "assetType": "provider",
+    "slug": "web-scraper-provider",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web Scraper Provider",
+        "ar": "مزود جمع بيانات الويب"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Runs the web scraper service for website content collection."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceChain": [
+        {
+          "slug": "web-scraper-service",
+          "order": 1
+        }
+      ]
+    }
+  },
+  {
+    "assetType": "provider",
+    "slug": "logo-picker-provider",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo Picker Provider",
+        "ar": "مزود اختيار الشعار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Scrapes a website, then selects the best logo asset."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceChain": [
+        {
+          "slug": "web-scraper-service",
+          "order": 1
+        },
+        {
+          "slug": "logo-picker-service",
+          "order": 2
+        }
+      ]
+    }
+  },
+  {
+    "assetType": "provider",
+    "slug": "semrush-provider",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Semrush Provider",
+        "ar": "مزود Semrush"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Retrieves SEO keyword metrics through Semrush."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceChain": [
+        {
+          "slug": "semrush-keyword-service",
+          "order": 1
+        }
+      ]
+    }
+  },
+  {
+    "assetType": "provider",
+    "slug": "openai-output-provider",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Output Provider",
+        "ar": "مزود مخرجات OpenAI"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Builds the final output schema with one AI mapping."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceChain": [
+        {
+          "slug": "openai-generation-service",
+          "order": 1
+        }
+      ]
+    }
+  }
+]

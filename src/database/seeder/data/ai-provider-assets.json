@@ -1,0 +1,80 @@
+[
+  {
+    "assetType": "aiProvider",
+    "slug": "openai-output-schema",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Output Schema",
+        "ar": "مخطط مخرجات OpenAI"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Default AI provider for building the complete output schema.",
+        "ar": "مزود الذكاء الاصطناعي الافتراضي لبناء مخطط المخرجات الكامل."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerKey": "openai",
+      "supportedModels": ["gpt-5.4-mini", "gpt-5.4"],
+      "defaultModel": "gpt-5.4-mini",
+      "supportsJsonSchema": true
+    }
+  },
+  {
+    "assetType": "aiProvider",
+    "slug": "openai-gpt54-mini",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI GPT-5.4 mini",
+        "ar": "OpenAI GPT-5.4 mini"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Fast, low-cost OpenAI model for structured generation.",
+        "ar": "نموذج سريع ومنخفض التكلفة لتوليد مخرجات منظّمة."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerKey": "OpenAI:gpt-5.4-mini",
+      "supportedModels": ["gpt-5.4-mini"],
+      "defaultModel": "gpt-5.4-mini",
+      "supportsJsonSchema": true
+    }
+  },
+  {
+    "assetType": "aiProvider",
+    "slug": "openai-gpt54",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI GPT-5.4",
+        "ar": "OpenAI GPT-5.4"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Higher-quality OpenAI model for complex generation.",
+        "ar": "نموذج OpenAI أعلى جودة للتوليد المعقّد."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerKey": "OpenAI:gpt-5.4",
+      "supportedModels": ["gpt-5.4"],
+      "defaultModel": "gpt-5.4",
+      "supportsJsonSchema": true
+    }
+  }
+]

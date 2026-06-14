@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "nd-input-url",
+    "builderCategoryKey": "intake",
+    "nodeTypeKey": "url-input"
+  },
+  {
+    "slug": "nd-input-text",
+    "builderCategoryKey": "intake",
+    "nodeTypeKey": "text-input"
+  },
+  {
+    "slug": "nd-input-enum",
+    "builderCategoryKey": "intake",
+    "nodeTypeKey": "enum-input"
+  },
+  {
+    "slug": "nd-source-web-scraper",
+    "builderCategoryKey": "acquisition",
+    "nodeTypeKey": "web-scraper"
+  },
+  {
+    "slug": "nd-source-browserless",
+    "builderCategoryKey": "acquisition",
+    "nodeTypeKey": "web-scraper"
+  },
+  {
+    "slug": "nd-source-logo-picker",
+    "builderCategoryKey": "acquisition",
+    "nodeTypeKey": "logo-picker"
+  },
+  {
+    "slug": "nd-source-semrush",
+    "builderCategoryKey": "acquisition",
+    "nodeTypeKey": "semrush-provider"
+  },
+  {
+    "slug": "nd-source-openai-research",
+    "builderCategoryKey": "enrichment",
+    "nodeTypeKey": "openai-research-source"
+  },
+  {
+    "slug": "nd-mapper",
+    "builderCategoryKey": "transform",
+    "nodeTypeKey": "mapper"
+  },
+  {
+    "slug": "nd-merger",
+    "builderCategoryKey": "transform",
+    "nodeTypeKey": "merger"
+  },
+  {
+    "slug": "nd-output-schema",
+    "builderCategoryKey": "delivery",
+    "nodeTypeKey": "output-schema"
+  },
+  {
+    "slug": "nd-ai-openai-gpt54-mini",
+    "builderCategoryKey": "reasoning",
+    "nodeTypeKey": "structured-ai-generator"
+  },
+  {
+    "slug": "nd-ai-openai-gpt54",
+    "builderCategoryKey": "reasoning",
+    "nodeTypeKey": "structured-ai-generator"
+  },
+  {
+    "slug": "nd-terminal-ai",
+    "builderCategoryKey": "delivery",
+    "nodeTypeKey": "terminal-ai"
+  },
+  {
+    "slug": "nd-terminal-schema",
+    "builderCategoryKey": "delivery",
+    "nodeTypeKey": "terminal-schema"
+  }
+]

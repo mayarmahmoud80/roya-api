@@ -1,0 +1,210 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-data-source",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Data source node (generic)",
+        "ar": "عقدة مصدر بيانات (عامة)"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Legacy generic data source; prefer a provider-specific node.",
+        "ar": "مصدر بيانات عام قديم، يُفضَّل استخدام عقدة لمزود محدد."
+      }
+    },
+    "scope": "global",
+    "status": "inactive",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "executionRole": "source",
+      "defaultRequired": true
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-web-scraper",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web Scraper",
+        "ar": "جامع بيانات الويب"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Fetches and normalizes a website page.",
+        "ar": "يجلب صفحة الموقع ويُطبِّع محتواها."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "providerKey": "WebScraper",
+      "executionRole": "source",
+      "defaultRequired": true,
+      "timeoutMs": 30000
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-browserless",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Browserless",
+        "ar": "Browserless"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Renders page HTML via hosted headless Chromium (Browserless). Same ports as Web Scraper — wire a URL and read `html` or the merged `payload`.",
+        "ar": "يعرض HTML الصفحة عبر متصفحًا بلا واجهة (Browserless). نفس منافذ Web Scraper — صِل رابطًا واقرأ `html` أو `payload`."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "providerKey": "Browserless",
+      "executionRole": "source",
+      "defaultRequired": true,
+      "timeoutMs": 45000
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-pravatar",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Random Avatar",
+        "ar": "صورة رمزية عشوائية"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Returns a placeholder avatar image URL from pravatar.cc using the wired `seed` text.",
+        "ar": "يُرجع رابط صورة رمزية من pravatar.cc باستخدام نص `seed` الموصول."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "providerKey": "Pravatar",
+      "executionRole": "source",
+      "defaultRequired": false,
+      "timeoutMs": 15000
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-logo-picker",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo Picker",
+        "ar": "اختيار الشعار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Picks the best brand logo from page HTML produced upstream. Wire a Web Scraper (or any source exposing an `html` STRING port) into the `pageHtml` input.",
+        "ar": "يختار أفضل شعار للعلامة من HTML أنتجته مصدر سابق. يجب توصيل Web Scraper (أو أي مصدر يُصدر منفذ `html` كسلسلة) بمدخل `pageHtml`."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "providerKey": "LogoPicker",
+      "executionRole": "source",
+      "defaultRequired": false,
+      "timeoutMs": 15000
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-semrush",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Semrush Keywords",
+        "ar": "كلمات Semrush"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "SEO keyword and traffic metrics for a domain.",
+        "ar": "مقاييس الكلمات المفتاحية وحركة الزيارات للنطاق."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "acquisition",
+      "providerKey": "Semrush",
+      "executionRole": "source",
+      "defaultRequired": false,
+      "timeoutMs": 45000
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-source-openai-research",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Research",
+        "ar": "بحث OpenAI"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI-synthesised background research on a brand.",
+        "ar": "بحث معلوماتي مُولَّد بالذكاء الاصطناعي عن العلامة."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "dataSource",
+      "category": "source",
+      "builderCategoryKey": "enrichment",
+      "providerKey": "OpenAI",
+      "executionRole": "source",
+      "defaultRequired": false,
+      "timeoutMs": 60000
+    }
+  }
+]

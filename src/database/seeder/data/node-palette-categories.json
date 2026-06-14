@@ -1,0 +1,158 @@
+[
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-input",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Inputs",
+        "ar": "مدخلات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Collect values from the user before the flow runs.",
+        "ar": "جمع القيم من المستخدم قبل تشغيل التدفق."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "input",
+      "sortOrder": 0,
+      "iconClass": "pi pi-pencil",
+      "accentColor": "#775DA6"
+    }
+  },
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-source",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Data Sources",
+        "ar": "مصادر البيانات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Pull structured data from integrated providers and services.",
+        "ar": "جلب بيانات منظّمة من مزودي الخدمات والتكاملات."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "source",
+      "sortOrder": 1,
+      "iconClass": "pi pi-cloud-download",
+      "accentColor": "#3a8a97"
+    }
+  },
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-transform",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Transforms",
+        "ar": "تحويلات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Map, merge, filter, and reshape payloads between steps.",
+        "ar": "تعيين ودمج وتصفية وإعادة تشكيل البيانات بين الخطوات."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "transform",
+      "sortOrder": 2,
+      "iconClass": "pi pi-sync",
+      "accentColor": "#6b7280"
+    }
+  },
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-schema",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Output Schemas",
+        "ar": "مخططات المخرجات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Declare the shape of structured output for downstream AI or terminals.",
+        "ar": "تعريف هيكل المخرجات المنظمة للذكاء الاصطناعي أو نهايات التدفق."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "schema",
+      "sortOrder": 3,
+      "iconClass": "pi pi-table",
+      "accentColor": "#b48a00"
+    }
+  },
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-ai",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI Providers",
+        "ar": "مزودو الذكاء الاصطناعي"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Call language models and enrichment steps on your data.",
+        "ar": "استدعاء نماذج اللغة وخطوات الإثراء على بياناتك."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "ai",
+      "sortOrder": 4,
+      "iconClass": "pi pi-sparkles",
+      "accentColor": "#d94f48"
+    }
+  },
+  {
+    "assetType": "nodePaletteCategory",
+    "slug": "npc-terminal",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Terminals",
+        "ar": "نهايات التدفق"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "End a branch: publish schema results, AI output, or bundles.",
+        "ar": "إنهاء فرع التدفق: نشر نتائج المخطط أو مخرجات الذكاء أو الحزم."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "nodeCategoryKey": "terminal",
+      "sortOrder": 5,
+      "iconClass": "pi pi-flag",
+      "accentColor": "#4b5563"
+    }
+  }
+]

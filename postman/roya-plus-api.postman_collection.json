@@ -1,0 +1,748 @@
+{
+  "info": {
+    "_postman_id": "38d8bee0-32f2-4910-973d-0763b44f954b",
+    "name": "Roya Plus API",
+    "description": "HTTP collection for the NestJS API (`website/royaai-plus-api`). Global prefix defaults to `/api/v1`. Import and set `baseUrl`, then run **Auth → Login** to fill `authToken`. Admin/owner JWT is required for builder-assets, report-types mutations, analysis-types mutations, and plans mutations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{authToken}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1" },
+    { "key": "authToken", "value": "" },
+    { "key": "publicApiKey", "value": "" },
+    { "key": "reportTypeId", "value": "" },
+    { "key": "reportTypeSlug", "value": "brand-overview" },
+    { "key": "builderAssetId", "value": "" },
+    { "key": "analysisTypeId", "value": "" },
+    { "key": "analysisId", "value": "" },
+    { "key": "reportId", "value": "" },
+    { "key": "integrationId", "value": "" },
+    { "key": "apiKeyId", "value": "" },
+    { "key": "invoiceId", "value": "" },
+    { "key": "planId", "value": "" },
+    { "key": "dataSourceId", "value": "" },
+    { "key": "memberUserId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dev User\",\n  \"organizationName\": \"Dev Org\",\n  \"email\": \"dev@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  const j = pm.response.json();",
+                  "  if (j.token) pm.collectionVariables.set('authToken', j.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"dev@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "Patch me",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated name\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "Change password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/change-password"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Report types (builder)",
+      "item": [
+        {
+          "name": "List report types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/report-types?page=1&limit=25"
+          }
+        },
+        {
+          "name": "Get report type by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/report-types/by-id/{{reportTypeId}}"
+          }
+        },
+        {
+          "name": "Get report type by slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/report-types/{{reportTypeSlug}}"
+          }
+        },
+        {
+          "name": "Create report type",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New report type\",\n  \"slug\": \"new-report-type\",\n  \"description\": \"Draft shell\",\n  \"scope\": \"global\"\n}"
+            },
+            "url": "{{baseUrl}}/report-types"
+          }
+        },
+        {
+          "name": "Update report type",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}"
+          }
+        },
+        {
+          "name": "Save draft version",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"defaultLanguage\": \"en\",\n  \"inputFields\": [],\n  \"dataSources\": [],\n  \"outputSections\": [],\n  \"aiMapping\": {\n    \"aiProviderAssetId\": \"{{builderAssetId}}\",\n    \"instructionName\": \"main\",\n    \"instruction\": \"Summarize inputs.\"\n  },\n  \"allowNoExternalData\": true\n}"
+            },
+            "description": "Replace `aiProviderAssetId` with a real `aiProvider` builder-asset id from your DB. Extend arrays using DTOs in `report-type-version.dto.ts`.",
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}/draft"
+          }
+        },
+        {
+          "name": "Validate draft",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}/validate"
+          }
+        },
+        {
+          "name": "Publish",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}/publish"
+          }
+        },
+        {
+          "name": "Archive",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}/archive"
+          }
+        },
+        {
+          "name": "Preview draft",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"websiteUrl\": \"https://example.com\"\n}"
+            },
+            "description": "Body should match the report type input schema keys.",
+            "url": "{{baseUrl}}/report-types/{{reportTypeId}}/preview"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Builder assets",
+      "item": [
+        {
+          "name": "List builder assets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/builder-assets?page=1&limit=25&assetType=schemaFieldType&status=active"
+          }
+        },
+        {
+          "name": "Create builder asset",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetType\": \"schemaFieldType\",\n  \"slug\": \"short-text-sample\",\n  \"scope\": \"global\",\n  \"status\": \"active\",\n  \"name\": {\n    \"defaultLanguage\": \"en\",\n    \"values\": {\n      \"en\": \"Short text\",\n      \"ar\": \"نص قصير\"\n    }\n  },\n  \"description\": {\n    \"defaultLanguage\": \"en\",\n    \"values\": { \"en\": \"Single-line text\" }\n  }\n}"
+            },
+            "url": "{{baseUrl}}/builder-assets"
+          }
+        },
+        {
+          "name": "Update builder asset",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"active\"\n}"
+            },
+            "url": "{{baseUrl}}/builder-assets/{{builderAssetId}}"
+          }
+        },
+        {
+          "name": "Usage by asset id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/builder-assets/{{builderAssetId}}/usage"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analysis types",
+      "item": [
+        {
+          "name": "List analysis types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/analysis-types?page=1&limit=25"
+          }
+        },
+        {
+          "name": "Get analysis type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/analysis-types/{{analysisTypeId}}"
+          }
+        },
+        {
+          "name": "Create analysis type",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Brand overview\",\n  \"slug\": \"brand-overview-flow\",\n  \"category\": \"brand\",\n  \"scope\": \"global\",\n  \"reportTypes\": []\n}"
+            },
+            "url": "{{baseUrl}}/analysis-types"
+          }
+        },
+        {
+          "name": "Update analysis type",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/analysis-types/{{analysisTypeId}}"
+          }
+        },
+        {
+          "name": "Publish analysis type",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/analysis-types/{{analysisTypeId}}/publish"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data sources",
+      "item": [
+        {
+          "name": "List data sources",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/data-sources"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analyses",
+      "item": [
+        {
+          "name": "List analyses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/analyses?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Analyses stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/analyses/stats"
+          }
+        },
+        {
+          "name": "Create analysis",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample run\",\n  \"targetEntity\": \"example.com\",\n  \"analysisTypeIds\": [\"{{analysisTypeId}}\"],\n  \"reportTypeIds\": [\"{{reportTypeId}}\"],\n  \"parameters\": {}\n}"
+            },
+            "url": "{{baseUrl}}/analyses"
+          }
+        },
+        {
+          "name": "Get analysis",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/analyses/{{analysisId}}"
+          }
+        },
+        {
+          "name": "Delete analysis",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/analyses/{{analysisId}}"
+          }
+        },
+        {
+          "name": "Stream analysis (SSE)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "text/event-stream" }],
+            "url": "{{baseUrl}}/analyses/{{analysisId}}/stream"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Dashboard stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/dashboard/stats"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Get report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/reports/{{reportId}}"
+          }
+        },
+        {
+          "name": "Regenerate report",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/reports/{{reportId}}/regenerate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Get my organization",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/organizations/me"
+          }
+        },
+        {
+          "name": "Update my organization",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My org\"\n}"
+            },
+            "url": "{{baseUrl}}/organizations/me"
+          }
+        },
+        {
+          "name": "List members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/organizations/me/members"
+          }
+        },
+        {
+          "name": "Invite member",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"member@example.com\",\n  \"role\": \"analyst\"\n}"
+            },
+            "description": "Roles: `owner`, `admin`, `analyst`, `viewer` (see `InviteMemberDto`).",
+            "url": "{{baseUrl}}/organizations/me/invite"
+          }
+        },
+        {
+          "name": "Update member role",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"viewer\"\n}"
+            },
+            "description": "`role` must be `owner` | `admin` | `analyst` | `viewer`.",
+            "url": "{{baseUrl}}/organizations/me/members/{{memberUserId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "API keys",
+      "item": [
+        {
+          "name": "List API keys",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api-keys"
+          }
+        },
+        {
+          "name": "Create API key",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201 || pm.response.code === 200) {",
+                  "  const j = pm.response.json();",
+                  "  const k = j.rawKey || j.key;",
+                  "  if (k) pm.collectionVariables.set('publicApiKey', k);",
+                  "  if (j._id) pm.collectionVariables.set('apiKeyId', j._id);",
+                  "  if (j.id) pm.collectionVariables.set('apiKeyId', j.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Standalone QA\",\n  \"reportTypeIds\": [\"{{reportTypeId}}\"],\n  \"rateLimit\": 60\n}"
+            },
+            "description": "Replace `reportTypeIds` with Mongo ids for standalone report types your key may call.",
+            "url": "{{baseUrl}}/api-keys"
+          }
+        },
+        {
+          "name": "Revoke API key",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api-keys/{{apiKeyId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Integrations (service)",
+      "item": [
+        {
+          "name": "List integrations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/integrations"
+          }
+        },
+        {
+          "name": "Get integration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/integrations/{{integrationId}}"
+          }
+        },
+        {
+          "name": "Create integration",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataSourceId\": \"{{dataSourceId}}\",\n  \"apiKey\": \"secret\",\n  \"config\": {}\n}"
+            },
+            "url": "{{baseUrl}}/integrations"
+          }
+        },
+        {
+          "name": "Update integration",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiKey\": \"rotated-secret\"\n}"
+            },
+            "url": "{{baseUrl}}/integrations/{{integrationId}}"
+          }
+        },
+        {
+          "name": "Delete integration",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/integrations/{{integrationId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plans",
+      "item": [
+        {
+          "name": "List plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/plans"
+          }
+        },
+        {
+          "name": "Create plan (admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pro\",\n  \"tier\": \"pro\",\n  \"price\": 49,\n  \"billingCycle\": \"monthly\",\n  \"apiAccessEnabled\": true,\n  \"maxUsers\": 10\n}"
+            },
+            "description": "See `CreatePlanDto`: `tier` uses `PlanTier`, `billingCycle` uses `BillingCycle`.",
+            "url": "{{baseUrl}}/plans"
+          }
+        },
+        {
+          "name": "Update plan (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monthlyPrice\": 59\n}"
+            },
+            "url": "{{baseUrl}}/plans/{{planId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions & billing",
+      "item": [
+        {
+          "name": "My subscription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/subscriptions/me"
+          }
+        },
+        {
+          "name": "Upgrade subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"{{planId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/subscriptions/upgrade"
+          }
+        },
+        {
+          "name": "Cancel subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/subscriptions/cancel"
+          }
+        },
+        {
+          "name": "List invoices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/invoices?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Get invoice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/invoices/{{invoiceId}}"
+          }
+        },
+        {
+          "name": "Current usage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/usage/me"
+          }
+        },
+        {
+          "name": "Usage history",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/usage/me/history?months=6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public / standalone reports",
+      "item": [
+        {
+          "name": "Create report (API key)",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [{ "key": "x-api-key", "value": "{{publicApiKey}}", "in": "header" }]
+            },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetEntity\": \"example.com\",\n  \"parameters\": {}\n}"
+            },
+            "url": "{{baseUrl}}/public/reports/{{reportTypeSlug}}"
+          }
+        },
+        {
+          "name": "Get public report (API key)",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [{ "key": "x-api-key", "value": "{{publicApiKey}}", "in": "header" }]
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/public/reports/{{reportId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Stripe webhook",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "stripe-signature", "value": "<stripe-signature>", "description": "Raw body must match Stripe signing secret." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Normally called by Stripe; requires valid `stripe-signature` and raw payload per `StripeService.constructEvent`.",
+            "url": "{{baseUrl}}/webhooks/stripe"
+          }
+        }
+      ]
+    }
+  ]
+}

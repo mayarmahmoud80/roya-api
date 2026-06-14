@@ -1,0 +1,746 @@
+[
+  {
+    "slug": "brand-pulse-dynamic",
+    "name": "Brand Pulse Dynamic",
+    "nameAr": "نبض العلامة التجارية الديناميكي",
+    "description": "Multi-source brand pulse report combining website, logo extraction, and AI research into one structured brand summary.",
+    "descriptionAr": "تقرير ديناميكي متعدد المصادر يجمع الموقع واستخراج الشعار والبحث بالذكاء الاصطناعي في ملخص منظم للعلامة التجارية.",
+    "analysisCategorySlug": "brand",
+    "analysisTypeSlug": "brand",
+    "estimatedDuration": 95,
+    "isStandalone": true,
+    "standalonePrice": 39,
+    "versionNumber": 1,
+    "publish": true,
+    "defaultLanguage": "en",
+    "dynamicFlow": {
+      "flowNodes": [
+        {
+          "nodeId": "brand-url",
+          "definitionAssetSlug": "nd-input-url",
+          "nodeKind": "inputField",
+          "required": true,
+          "config": {
+            "inputKey": "websiteUrl"
+          },
+          "position": {
+            "x": 40,
+            "y": 40
+          }
+        },
+        {
+          "nodeId": "brand-name",
+          "definitionAssetSlug": "nd-input-text",
+          "nodeKind": "inputField",
+          "required": false,
+          "config": {
+            "inputKey": "brandName"
+          },
+          "position": {
+            "x": 40,
+            "y": 200
+          }
+        },
+        {
+          "nodeId": "brand-web",
+          "definitionAssetSlug": "nd-source-web-scraper",
+          "nodeKind": "dataSource",
+          "required": true,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 40
+          }
+        },
+        {
+          "nodeId": "brand-logo",
+          "definitionAssetSlug": "nd-source-logo-picker",
+          "nodeKind": "dataSource",
+          "required": false,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 220
+          }
+        },
+        {
+          "nodeId": "brand-research",
+          "definitionAssetSlug": "nd-source-openai-research",
+          "nodeKind": "dataSource",
+          "required": false,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 390
+          }
+        },
+        {
+          "nodeId": "brand-merge",
+          "definitionAssetSlug": "nd-merger",
+          "nodeKind": "transform",
+          "required": true,
+          "position": {
+            "x": 520,
+            "y": 220
+          }
+        },
+        {
+          "nodeId": "brand-schema",
+          "definitionAssetSlug": "nd-output-schema",
+          "nodeKind": "outputSchema",
+          "required": true,
+          "config": {
+            "outputSchema": {
+              "executiveSummary": "string",
+              "visualSignals": "array",
+              "toneOfVoice": "array",
+              "positioning": "string",
+              "risks": "array"
+            }
+          },
+          "position": {
+            "x": 760,
+            "y": 220
+          }
+        },
+        {
+          "nodeId": "brand-ai",
+          "definitionAssetSlug": "nd-ai-openai-gpt54-mini",
+          "nodeKind": "aiProvider",
+          "required": true,
+          "config": {
+            "temperature": 0.2,
+            "promptSubjectInputKey": "brandName",
+            "instruction": "Build a concise brand pulse report using all connected signals. Preserve missing optional sources as null-safe gaps instead of failing."
+          },
+          "position": {
+            "x": 980,
+            "y": 220
+          }
+        },
+        {
+          "nodeId": "brand-terminal",
+          "definitionAssetSlug": "nd-terminal-ai",
+          "nodeKind": "terminal",
+          "required": true,
+          "terminalConfig": {
+            "terminalKey": "brandPulse",
+            "required": true,
+            "acceptedSourceKinds": ["aiProvider"],
+            "outputMode": "aiResult"
+          },
+          "position": {
+            "x": 1200,
+            "y": 220
+          }
+        }
+      ],
+      "flowConnections": [
+        {
+          "connectionId": "brand-url-web",
+          "source": {
+            "nodeId": "brand-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "brand-web",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-url-logo",
+          "source": {
+            "nodeId": "brand-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "brand-logo",
+            "portKey": "websiteUrl"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "brand-name-logo",
+          "source": {
+            "nodeId": "brand-name",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "brand-logo",
+            "portKey": "brandName"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "brand-html-logo",
+          "source": {
+            "nodeId": "brand-web",
+            "portKey": "html"
+          },
+          "target": {
+            "nodeId": "brand-logo",
+            "portKey": "pageHtml"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-url-research",
+          "source": {
+            "nodeId": "brand-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "brand-research",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-name-research",
+          "source": {
+            "nodeId": "brand-name",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "brand-research",
+            "portKey": "brandName"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "brand-web-merge",
+          "source": {
+            "nodeId": "brand-web",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "brand-merge",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-logo-merge",
+          "source": {
+            "nodeId": "brand-logo",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "brand-merge",
+            "portKey": "in"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "brand-research-merge",
+          "source": {
+            "nodeId": "brand-research",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "brand-merge",
+            "portKey": "in"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "brand-merge-schema",
+          "source": {
+            "nodeId": "brand-merge",
+            "portKey": "out"
+          },
+          "target": {
+            "nodeId": "brand-schema",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-schema-ai",
+          "source": {
+            "nodeId": "brand-schema",
+            "portKey": "schema"
+          },
+          "target": {
+            "nodeId": "brand-ai",
+            "portKey": "context"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "brand-ai-terminal",
+          "source": {
+            "nodeId": "brand-ai",
+            "portKey": "result"
+          },
+          "target": {
+            "nodeId": "brand-terminal",
+            "portKey": "in"
+          },
+          "required": true
+        }
+      ]
+    }
+  },
+  {
+    "slug": "seo-opportunity-map-dynamic",
+    "name": "SEO Opportunity Map Dynamic",
+    "nameAr": "خريطة فرص SEO الديناميكية",
+    "description": "Complex SEO opportunity report using website and Semrush data merged into one prioritized AI output.",
+    "descriptionAr": "تقرير ديناميكي معقد لفرص SEO يجمع بيانات الموقع وSemrush في مخرج ذكاء اصطناعي مرتب حسب الأولوية.",
+    "analysisCategorySlug": "seo",
+    "analysisTypeSlug": "seo",
+    "estimatedDuration": 75,
+    "isStandalone": true,
+    "standalonePrice": 29,
+    "versionNumber": 1,
+    "publish": true,
+    "defaultLanguage": "en",
+    "dynamicFlow": {
+      "flowNodes": [
+        {
+          "nodeId": "seo-url",
+          "definitionAssetSlug": "nd-input-url",
+          "nodeKind": "inputField",
+          "required": true,
+          "config": {
+            "inputKey": "websiteUrl"
+          },
+          "position": {
+            "x": 40,
+            "y": 80
+          }
+        },
+        {
+          "nodeId": "seo-web",
+          "definitionAssetSlug": "nd-source-web-scraper",
+          "nodeKind": "dataSource",
+          "required": true,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 40
+          }
+        },
+        {
+          "nodeId": "seo-semrush",
+          "definitionAssetSlug": "nd-source-semrush",
+          "nodeKind": "dataSource",
+          "required": true,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 240
+          }
+        },
+        {
+          "nodeId": "seo-merge",
+          "definitionAssetSlug": "nd-merger",
+          "nodeKind": "transform",
+          "required": true,
+          "position": {
+            "x": 520,
+            "y": 140
+          }
+        },
+        {
+          "nodeId": "seo-schema",
+          "definitionAssetSlug": "nd-output-schema",
+          "nodeKind": "outputSchema",
+          "required": true,
+          "config": {
+            "outputSchema": {
+              "opportunitySummary": "string",
+              "keywordClusters": "array",
+              "technicalFindings": "array",
+              "quickWins": "array",
+              "roadmap": "array"
+            }
+          },
+          "position": {
+            "x": 760,
+            "y": 140
+          }
+        },
+        {
+          "nodeId": "seo-ai",
+          "definitionAssetSlug": "nd-ai-openai-gpt54-mini",
+          "nodeKind": "aiProvider",
+          "required": true,
+          "config": {
+            "temperature": 0.1,
+            "promptSubjectInputKey": "websiteUrl",
+            "instruction": "Generate a prioritized SEO opportunity map from technical and keyword signals. Group findings by impact and effort."
+          },
+          "position": {
+            "x": 980,
+            "y": 140
+          }
+        },
+        {
+          "nodeId": "seo-terminal",
+          "definitionAssetSlug": "nd-terminal-ai",
+          "nodeKind": "terminal",
+          "required": true,
+          "terminalConfig": {
+            "terminalKey": "seoOpportunityMap",
+            "required": true,
+            "acceptedSourceKinds": ["aiProvider"],
+            "outputMode": "aiResult"
+          },
+          "position": {
+            "x": 1200,
+            "y": 140
+          }
+        }
+      ],
+      "flowConnections": [
+        {
+          "connectionId": "seo-url-web",
+          "source": {
+            "nodeId": "seo-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "seo-web",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-url-semrush",
+          "source": {
+            "nodeId": "seo-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "seo-semrush",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-web-merge",
+          "source": {
+            "nodeId": "seo-web",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "seo-merge",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-semrush-merge",
+          "source": {
+            "nodeId": "seo-semrush",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "seo-merge",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-merge-schema",
+          "source": {
+            "nodeId": "seo-merge",
+            "portKey": "out"
+          },
+          "target": {
+            "nodeId": "seo-schema",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-schema-ai",
+          "source": {
+            "nodeId": "seo-schema",
+            "portKey": "schema"
+          },
+          "target": {
+            "nodeId": "seo-ai",
+            "portKey": "context"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "seo-ai-terminal",
+          "source": {
+            "nodeId": "seo-ai",
+            "portKey": "result"
+          },
+          "target": {
+            "nodeId": "seo-terminal",
+            "portKey": "in"
+          },
+          "required": true
+        }
+      ]
+    }
+  },
+  {
+    "slug": "market-competitor-intel-dynamic",
+    "name": "Market Competitor Intel Dynamic",
+    "nameAr": "ذكاء السوق والمنافسين الديناميكي",
+    "description": "Market and competitor intelligence report combining website context, AI research enrichment, and SEO demand indicators.",
+    "descriptionAr": "تقرير ديناميكي لذكاء السوق والمنافسين يجمع سياق الموقع والإثراء البحثي بالذكاء الاصطناعي ومؤشرات الطلب من SEO.",
+    "analysisCategorySlug": "market",
+    "analysisTypeSlug": "market",
+    "estimatedDuration": 110,
+    "isStandalone": false,
+    "standalonePrice": 0,
+    "versionNumber": 1,
+    "publish": true,
+    "defaultLanguage": "en",
+    "dynamicFlow": {
+      "flowNodes": [
+        {
+          "nodeId": "market-url",
+          "definitionAssetSlug": "nd-input-url",
+          "nodeKind": "inputField",
+          "required": true,
+          "config": {
+            "inputKey": "websiteUrl"
+          },
+          "position": {
+            "x": 40,
+            "y": 60
+          }
+        },
+        {
+          "nodeId": "market-brand",
+          "definitionAssetSlug": "nd-input-text",
+          "nodeKind": "inputField",
+          "required": false,
+          "config": {
+            "inputKey": "brandName"
+          },
+          "position": {
+            "x": 40,
+            "y": 220
+          }
+        },
+        {
+          "nodeId": "market-web",
+          "definitionAssetSlug": "nd-source-web-scraper",
+          "nodeKind": "dataSource",
+          "required": true,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 20
+          }
+        },
+        {
+          "nodeId": "market-research",
+          "definitionAssetSlug": "nd-source-openai-research",
+          "nodeKind": "dataSource",
+          "required": true,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 210
+          }
+        },
+        {
+          "nodeId": "market-semrush",
+          "definitionAssetSlug": "nd-source-semrush",
+          "nodeKind": "dataSource",
+          "required": false,
+          "config": {},
+          "position": {
+            "x": 260,
+            "y": 400
+          }
+        },
+        {
+          "nodeId": "market-merge",
+          "definitionAssetSlug": "nd-merger",
+          "nodeKind": "transform",
+          "required": true,
+          "position": {
+            "x": 520,
+            "y": 210
+          }
+        },
+        {
+          "nodeId": "market-schema",
+          "definitionAssetSlug": "nd-output-schema",
+          "nodeKind": "outputSchema",
+          "required": true,
+          "config": {
+            "outputSchema": {
+              "marketNarrative": "string",
+              "demandSignals": "array",
+              "competitorThemes": "array",
+              "whitespaceOpportunities": "array",
+              "launchRecommendations": "array"
+            }
+          },
+          "position": {
+            "x": 760,
+            "y": 210
+          }
+        },
+        {
+          "nodeId": "market-ai",
+          "definitionAssetSlug": "nd-ai-openai-gpt54",
+          "nodeKind": "aiProvider",
+          "required": true,
+          "config": {
+            "temperature": 0.15,
+            "promptSubjectInputKey": "brandName",
+            "instruction": "Synthesize market context, competitor patterns, and demand signals into a strategic report. Highlight whitespace and actionable growth moves."
+          },
+          "position": {
+            "x": 980,
+            "y": 210
+          }
+        },
+        {
+          "nodeId": "market-terminal",
+          "definitionAssetSlug": "nd-terminal-ai",
+          "nodeKind": "terminal",
+          "required": true,
+          "terminalConfig": {
+            "terminalKey": "marketCompetitorIntel",
+            "required": true,
+            "acceptedSourceKinds": ["aiProvider"],
+            "outputMode": "aiResult"
+          },
+          "position": {
+            "x": 1200,
+            "y": 210
+          }
+        }
+      ],
+      "flowConnections": [
+        {
+          "connectionId": "market-url-web",
+          "source": {
+            "nodeId": "market-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "market-web",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-url-research",
+          "source": {
+            "nodeId": "market-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "market-research",
+            "portKey": "websiteUrl"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-brand-research",
+          "source": {
+            "nodeId": "market-brand",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "market-research",
+            "portKey": "brandName"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "market-url-semrush",
+          "source": {
+            "nodeId": "market-url",
+            "portKey": "value"
+          },
+          "target": {
+            "nodeId": "market-semrush",
+            "portKey": "websiteUrl"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "market-web-merge",
+          "source": {
+            "nodeId": "market-web",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "market-merge",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-research-merge",
+          "source": {
+            "nodeId": "market-research",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "market-merge",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-semrush-merge",
+          "source": {
+            "nodeId": "market-semrush",
+            "portKey": "payload"
+          },
+          "target": {
+            "nodeId": "market-merge",
+            "portKey": "in"
+          },
+          "required": false
+        },
+        {
+          "connectionId": "market-merge-schema",
+          "source": {
+            "nodeId": "market-merge",
+            "portKey": "out"
+          },
+          "target": {
+            "nodeId": "market-schema",
+            "portKey": "in"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-schema-ai",
+          "source": {
+            "nodeId": "market-schema",
+            "portKey": "schema"
+          },
+          "target": {
+            "nodeId": "market-ai",
+            "portKey": "context"
+          },
+          "required": true
+        },
+        {
+          "connectionId": "market-ai-terminal",
+          "source": {
+            "nodeId": "market-ai",
+            "portKey": "result"
+          },
+          "target": {
+            "nodeId": "market-terminal",
+            "portKey": "in"
+          },
+          "required": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,207 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-mapper",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Mapper node",
+        "ar": "عقدة المخطط"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Maps heterogeneous sources into one object: each input port is a named key (one connection per port). Use a Merger node when several sources share the same shape.",
+        "ar": "يحوّل مصادر غير متجانسة إلى كائن واحد: كل منفذ إدخال هو مفتاح مُسمّى (اتصال واحد لكل منفذ). استخدم عقدة الدمج إذا كانت عدة مصادر بنفس الشكل."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "transform",
+      "category": "transform",
+      "builderCategoryKey": "transform",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 1,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        },
+        {
+          "key": "slot2",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "slot2",
+              "ar": "slot2"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        },
+        {
+          "key": "slot3",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "slot3",
+              "ar": "slot3"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        },
+        {
+          "key": "slot4",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "slot4",
+              "ar": "slot4"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        },
+        {
+          "key": "slot5",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "slot5",
+              "ar": "slot5"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        },
+        {
+          "key": "slot6",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "slot6",
+              "ar": "slot6"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "maxConnections": 1,
+          "compatibleValueTypes": ["object", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "out",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "out",
+              "ar": "out"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["object", "any"]
+        }
+      ],
+      "executionRole": "transform",
+      "defaultRequired": true
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-merger",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Merger node",
+        "ar": "عقدة الدمج"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Collects many incoming payloads into an array (e.g. two Logo Pickers). Same port can have multiple wires; order follows connection order.",
+        "ar": "يجمع عدة حمولات واردة في مصفوفة (مثل باحثي شعار). يمكن توصيل عدة أسلاك لنفس المنفذ؛ الترتيب يتبع ترتيب الاتصالات."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "transform",
+      "category": "transform",
+      "builderCategoryKey": "transform",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "object",
+          "required": false,
+          "minConnections": 0,
+          "compatibleValueTypes": ["object", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "out",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "out",
+              "ar": "out"
+            }
+          },
+          "valueType": "array",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["array", "object", "any"]
+        }
+      ],
+      "executionRole": "transform",
+      "defaultRequired": false
+    }
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "name": "OpenAI GPT-4o",
+    "slug": "openai-gpt4o",
+    "providerSlug": "openai",
+    "provider": "OpenAI",
+    "type": "ai",
+    "kind": "external",
+    "authType": "api_key",
+    "isActive": true
+  },
+  {
+    "name": "Semrush API",
+    "slug": "semrush-api",
+    "providerSlug": "semrush",
+    "provider": "Semrush",
+    "type": "api",
+    "kind": "external",
+    "authType": "api_key",
+    "isActive": true
+  },
+  {
+    "name": "Web Scraper",
+    "slug": "web-scraper",
+    "providerSlug": "web-scraper",
+    "provider": "WebScraper",
+    "type": "scraper",
+    "kind": "external",
+    "authType": "api_key",
+    "isActive": true
+  },
+  {
+    "name": "Google Search API",
+    "slug": "google-search",
+    "providerSlug": "google",
+    "provider": "Google",
+    "type": "api",
+    "kind": "external",
+    "authType": "oauth2",
+    "isActive": true
+  },
+  {
+    "name": "Google OAuth",
+    "slug": "google-oauth",
+    "providerSlug": "google",
+    "provider": "Google",
+    "type": "api",
+    "kind": "external",
+    "authType": "oauth2",
+    "isActive": true,
+    "oauthConfig": {
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "tokenUrl": "https://oauth2.googleapis.com/token",
+      "scopes": [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
+      ],
+      "responseType": "code",
+      "grantType": "authorization_code",
+      "encryptedClientId": "920901042501c69fc19299a8086f228f:acdcd00a18dafc2d98402e2cf9ba7704c0094e33f9c7e4218ec7186950d11508",
+      "encryptedClientSecret": "ab3a94faaf42fc8eeb3fc6eb7efca411:a90abbb95e48fa06f663cbeb531c9978a15bacc40e127d76da6224c6b8697f95"
+    }
+  },
+  {
+    "name": "Logo Picker",
+    "slug": "logo-picker",
+    "providerSlug": "logo-picker",
+    "provider": "LogoPicker",
+    "type": "scraper",
+    "kind": "internal",
+    "authType": "none",
+    "isActive": true
+  },
+  {
+    "name": "Instagram Business API",
+    "slug": "instagram-business",
+    "providerSlug": "instagram",
+    "provider": "Instagram",
+    "type": "api",
+    "kind": "external",
+    "authType": "oauth2",
+    "isActive": true,
+    "oauthConfig": {
+      "authorizationUrl": "https://api.instagram.com/oauth/authorize",
+      "tokenUrl": "https://api.instagram.com/oauth/access_token",
+      "scopes": ["user_profile", "user_media"],
+      "responseType": "code",
+      "grantType": "authorization_code",
+      "encryptedClientId": "920901042501c69fc19299a8086f228f:acdcd00a18dafc2d98402e2cf9ba7704c0094e33f9c7e4218ec7186950d11508",
+      "encryptedClientSecret": "ab3a94faaf42fc8eeb3fc6eb7efca411:a90abbb95e48fa06f663cbeb531c9978a15bacc40e127d76da6224c6b8697f95"
+    }
+  }
+]

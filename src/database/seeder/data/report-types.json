@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "brand-overview",
+    "name": "Brand Overview",
+    "description": "A comprehensive brand identity report covering DNA, visual identity, tone of voice, strategic positioning, gap analysis, and perception risks.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Brand Overview",
+        "ar": "نظرة عامة على العلامة التجارية"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "A comprehensive brand identity report covering DNA, visual identity, tone of voice, strategic positioning, gap analysis, and perception risks.",
+        "ar": "تقرير شامل لهوية العلامة التجارية يغطي الحمض النووي للبراند، الهوية البصرية، أسلوب الصوت، التموضع الاستراتيجي، تحليل الفجوات، ومخاطر الإدراك."
+      }
+    },
+    "estimatedDuration": 120,
+    "isStandalone": true,
+    "standalonePrice": 49,
+    "isActive": true
+  },
+  {
+    "slug": "seo-audit",
+    "name": "SEO Audit",
+    "description": "Full SEO health check and recommendations.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "SEO Audit",
+        "ar": "تدقيق تحسين محركات البحث"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Full SEO health check and recommendations.",
+        "ar": "تدقيق شامل لصحة تحسين محركات البحث مع توصيات."
+      }
+    },
+    "estimatedDuration": 60,
+    "isStandalone": true,
+    "standalonePrice": 14.99,
+    "isActive": true
+  },
+  {
+    "slug": "keyword-analysis",
+    "name": "Keyword Analysis",
+    "description": "Top organic keywords and ranking opportunities.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Keyword Analysis",
+        "ar": "تحليل الكلمات المفتاحية"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Top organic keywords and ranking opportunities.",
+        "ar": "أبرز الكلمات المفتاحية العضوية وفرص التصنيف."
+      }
+    },
+    "estimatedDuration": 30,
+    "isStandalone": true,
+    "standalonePrice": 9.99,
+    "isActive": true
+  },
+  {
+    "slug": "competitor-comparison",
+    "name": "Competitor Comparison",
+    "description": "Side-by-side competitor analysis.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Competitor Comparison",
+        "ar": "مقارنة المنافسين"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Side-by-side competitor analysis.",
+        "ar": "تحليل مقارن جنبًا إلى جنب للمنافسين."
+      }
+    },
+    "estimatedDuration": 90,
+    "isStandalone": false,
+    "standalonePrice": 0,
+    "isActive": true
+  },
+  {
+    "slug": "market-sizing",
+    "name": "Market Sizing",
+    "description": "Total addressable market and growth potential.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Market Sizing",
+        "ar": "حجم السوق"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Total addressable market and growth potential.",
+        "ar": "إجمالي السوق المتاح وإمكانات النمو."
+      }
+    },
+    "estimatedDuration": 60,
+    "isStandalone": false,
+    "standalonePrice": 0,
+    "isActive": true
+  },
+  {
+    "slug": "financial-health",
+    "name": "Financial Health Score",
+    "description": "Financial stability and health assessment.",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Financial Health Score",
+        "ar": "درجة الصحة المالية"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Financial stability and health assessment.",
+        "ar": "تقييم الاستقرار والصحة المالية."
+      }
+    },
+    "estimatedDuration": 45,
+    "isStandalone": false,
+    "standalonePrice": 0,
+    "isActive": true
+  }
+]

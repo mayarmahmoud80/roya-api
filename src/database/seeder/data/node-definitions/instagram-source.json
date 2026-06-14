@@ -1,0 +1,137 @@
+{
+  "assetType": "nodeDefinition",
+  "slug": "nd-source-instagram",
+  "name": {
+    "defaultLanguage": "en",
+    "values": {
+      "en": "Instagram Insights",
+      "ar": "إحصاءات إنستجرام"
+    }
+  },
+  "description": {
+    "defaultLanguage": "en",
+    "values": {
+      "en": "Fetch Instagram profile statistics, insights, and media data using OAuth2",
+      "ar": "جلب إحصاءات وبيانات الملف الشخصي والمنشورات من إنستجرام باستخدام OAuth2"
+    }
+  },
+  "scope": "global",
+  "status": "active",
+  "nodeDefinition": {
+    "category": "source",
+    "nodeKind": "dataSource",
+    "providerKey": "instagram",
+    "builderCategoryKey": "acquisition",
+    "nodeTypeKey": "instagram-insights",
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string",
+          "enum": ["7", "30"],
+          "default": "7",
+          "title": "Insights Period",
+          "description": "Number of days for insights data"
+        },
+        "includeMedia": {
+          "type": "boolean",
+          "default": true,
+          "title": "Include Recent Media",
+          "description": "Fetch recent media posts"
+        },
+        "mediaLimit": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50,
+          "title": "Media Limit",
+          "description": "Number of recent posts to fetch"
+        }
+      }
+    },
+    "inputs": [
+      {
+        "key": "period",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Period (days)",
+            "ar": "الفترة (أيام)"
+          }
+        },
+        "valueType": "string",
+        "required": false
+      },
+      {
+        "key": "includeMedia",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Include Media",
+            "ar": "تضمين المنشورات"
+          }
+        },
+        "valueType": "boolean",
+        "required": false
+      },
+      {
+        "key": "mediaLimit",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Media Limit",
+            "ar": "حد المنشورات"
+          }
+        },
+        "valueType": "number",
+        "required": false
+      }
+    ],
+    "outputs": [
+      {
+        "key": "profile",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Profile",
+            "ar": "الملف الشخصي"
+          }
+        },
+        "valueType": "object"
+      },
+      {
+        "key": "insights",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Insights",
+            "ar": "الإحصاءات"
+          }
+        },
+        "valueType": "object"
+      },
+      {
+        "key": "recentMedia",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Recent Media",
+            "ar": "المنشورات الحديثة"
+          }
+        },
+        "valueType": "array"
+      },
+      {
+        "key": "topMediaWithInsights",
+        "label": {
+          "defaultLanguage": "en",
+          "values": {
+            "en": "Top Media with Insights",
+            "ar": "أفضل المنشورات مع الإحصاءات"
+          }
+        },
+        "valueType": "array"
+      }
+    ]
+  }
+}

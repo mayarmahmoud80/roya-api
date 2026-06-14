@@ -1,0 +1,230 @@
+[
+  {
+    "key": "url-input",
+    "slug": "url-input",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "URL Input",
+        "ar": "إدخال رابط"
+      }
+    },
+    "builderCategoryKey": "intake",
+    "executionFamily": "input",
+    "executorKey": "input",
+    "rendererKey": "inputField",
+    "capabilities": ["input"],
+    "status": "active"
+  },
+  {
+    "key": "text-input",
+    "slug": "text-input",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Text Input",
+        "ar": "إدخال نص"
+      }
+    },
+    "builderCategoryKey": "intake",
+    "executionFamily": "input",
+    "executorKey": "input",
+    "rendererKey": "inputField",
+    "capabilities": ["input"],
+    "status": "active"
+  },
+  {
+    "key": "enum-input",
+    "slug": "enum-input",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Enum Input",
+        "ar": "إدخال اختيار"
+      }
+    },
+    "builderCategoryKey": "intake",
+    "executionFamily": "input",
+    "executorKey": "input",
+    "rendererKey": "inputField",
+    "capabilities": ["input"],
+    "status": "active"
+  },
+  {
+    "key": "web-scraper",
+    "slug": "web-scraper",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web Scraper",
+        "ar": "جامع بيانات الويب"
+      }
+    },
+    "builderCategoryKey": "acquisition",
+    "executionFamily": "source",
+    "executorKey": "source",
+    "rendererKey": "dataSource",
+    "capabilities": ["fetch-web"],
+    "supportsRetry": true,
+    "status": "active"
+  },
+  {
+    "key": "logo-picker",
+    "slug": "logo-picker",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo Picker",
+        "ar": "اختيار الشعار"
+      }
+    },
+    "builderCategoryKey": "acquisition",
+    "executionFamily": "source",
+    "executorKey": "source",
+    "rendererKey": "dataSource",
+    "capabilities": ["extract-logo"],
+    "supportsRetry": true,
+    "status": "active"
+  },
+  {
+    "key": "semrush-provider",
+    "slug": "semrush-provider",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Semrush Source",
+        "ar": "مصدر Semrush"
+      }
+    },
+    "builderCategoryKey": "acquisition",
+    "executionFamily": "source",
+    "executorKey": "source",
+    "rendererKey": "dataSource",
+    "capabilities": ["fetch-seo"],
+    "supportsRetry": true,
+    "status": "active"
+  },
+  {
+    "key": "openai-research-source",
+    "slug": "openai-research-source",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Research Source",
+        "ar": "مصدر بحث OpenAI"
+      }
+    },
+    "builderCategoryKey": "enrichment",
+    "executionFamily": "source",
+    "executorKey": "source",
+    "rendererKey": "dataSource",
+    "capabilities": ["research"],
+    "supportsRetry": true,
+    "status": "active"
+  },
+  {
+    "key": "mapper",
+    "slug": "mapper",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Mapper",
+        "ar": "مُعين"
+      }
+    },
+    "builderCategoryKey": "transform",
+    "executionFamily": "transform",
+    "executorKey": "transform",
+    "rendererKey": "transform",
+    "capabilities": ["map"],
+    "supportsMultipleInbound": true,
+    "status": "active"
+  },
+  {
+    "key": "merger",
+    "slug": "merger",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Merger",
+        "ar": "مُدمج"
+      }
+    },
+    "builderCategoryKey": "transform",
+    "executionFamily": "transform",
+    "executorKey": "transform",
+    "rendererKey": "transform",
+    "capabilities": ["merge"],
+    "supportsMultipleInbound": true,
+    "status": "active"
+  },
+  {
+    "key": "output-schema",
+    "slug": "output-schema",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Output Schema",
+        "ar": "مخطط المخرجات"
+      }
+    },
+    "builderCategoryKey": "delivery",
+    "executionFamily": "schema",
+    "executorKey": "schema",
+    "rendererKey": "outputSchema",
+    "capabilities": ["schema"],
+    "status": "active"
+  },
+  {
+    "key": "structured-ai-generator",
+    "slug": "structured-ai-generator",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Structured AI Generator",
+        "ar": "مولد ذكاء اصطناعي منظّم"
+      }
+    },
+    "builderCategoryKey": "reasoning",
+    "executionFamily": "ai",
+    "executorKey": "ai",
+    "rendererKey": "aiProvider",
+    "capabilities": ["ai-generate"],
+    "supportsRetry": true,
+    "status": "active"
+  },
+  {
+    "key": "terminal-ai",
+    "slug": "terminal-ai",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI Terminal",
+        "ar": "نهاية الذكاء الاصطناعي"
+      }
+    },
+    "builderCategoryKey": "delivery",
+    "executionFamily": "terminal",
+    "executorKey": "terminal",
+    "rendererKey": "terminal",
+    "capabilities": ["terminal"],
+    "status": "active"
+  },
+  {
+    "key": "terminal-schema",
+    "slug": "terminal-schema",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Schema Terminal",
+        "ar": "نهاية المخطط"
+      }
+    },
+    "builderCategoryKey": "delivery",
+    "executionFamily": "terminal",
+    "executorKey": "terminal",
+    "rendererKey": "terminal",
+    "capabilities": ["terminal"],
+    "status": "active"
+  }
+]

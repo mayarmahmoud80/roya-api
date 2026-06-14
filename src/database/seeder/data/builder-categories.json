@@ -1,0 +1,186 @@
+[
+  {
+    "key": "intake",
+    "slug": "intake",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Intake",
+        "ar": "الإدخال"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "User inputs, uploads, and request parameters.",
+        "ar": "مدخلات المستخدم والملفات المرفوعة ومعلمات الطلب."
+      }
+    },
+    "icon": "pi pi-pencil",
+    "color": "#775DA6",
+    "sortOrder": 0,
+    "allowedOutgoingCategoryKeys": ["acquisition", "enrichment", "transform", "reasoning"],
+    "isSystem": true
+  },
+  {
+    "key": "acquisition",
+    "slug": "acquisition",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Acquisition",
+        "ar": "الجمع"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "External providers and retrieval nodes.",
+        "ar": "عقد جمع البيانات من المزودات الخارجية."
+      }
+    },
+    "icon": "pi pi-cloud-download",
+    "color": "#3A8A97",
+    "sortOrder": 1,
+    "allowedOutgoingCategoryKeys": ["acquisition", "enrichment", "transform", "quality", "reasoning", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "enrichment",
+    "slug": "enrichment",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Enrichment",
+        "ar": "الإثراء"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Parsing, extraction, and enrichment nodes.",
+        "ar": "عقد التحليل والاستخراج والإثراء."
+      }
+    },
+    "icon": "pi pi-plus-circle",
+    "color": "#2D8F6F",
+    "sortOrder": 2,
+    "allowedOutgoingCategoryKeys": ["transform", "quality", "reasoning", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "transform",
+    "slug": "transform",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Transform",
+        "ar": "التحويل"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Mappers, mergers, and normalization nodes.",
+        "ar": "عقد التعيين والدمج والتطبيع."
+      }
+    },
+    "icon": "pi pi-sync",
+    "color": "#6B7280",
+    "sortOrder": 3,
+    "allowedOutgoingCategoryKeys": ["transform", "quality", "reasoning", "decision", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "reasoning",
+    "slug": "reasoning",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Reasoning",
+        "ar": "الاستدلال"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Prompt-driven synthesis and structured AI generation.",
+        "ar": "عقد الاستدلال وبناء المخرجات بالذكاء الاصطناعي."
+      }
+    },
+    "icon": "pi pi-sparkles",
+    "color": "#D94F48",
+    "sortOrder": 4,
+    "allowedOutgoingCategoryKeys": ["quality", "decision", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "quality",
+    "slug": "quality",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Quality",
+        "ar": "الجودة"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Validation, confidence, and completeness checks.",
+        "ar": "عقد التحقق والجودة والاكتمال."
+      }
+    },
+    "icon": "pi pi-check-square",
+    "color": "#B48A00",
+    "sortOrder": 5,
+    "allowedOutgoingCategoryKeys": ["reasoning", "decision", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "decision",
+    "slug": "decision",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Decision",
+        "ar": "القرار"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Routing, thresholds, and branching control.",
+        "ar": "عقد التوجيه والتحكم بالمسارات."
+      }
+    },
+    "icon": "pi pi-share-alt",
+    "color": "#0F766E",
+    "sortOrder": 6,
+    "allowedOutgoingCategoryKeys": ["acquisition", "enrichment", "transform", "reasoning", "delivery"],
+    "isSystem": true
+  },
+  {
+    "key": "delivery",
+    "slug": "delivery",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Delivery",
+        "ar": "التسليم"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Final report packaging and terminal nodes.",
+        "ar": "عقد تجميع المخرجات النهائية وإنهاء التدفق."
+      }
+    },
+    "icon": "pi pi-flag",
+    "color": "#4B5563",
+    "sortOrder": 7,
+    "allowedOutgoingCategoryKeys": ["reasoning"],
+    "isSystem": true
+  }
+]

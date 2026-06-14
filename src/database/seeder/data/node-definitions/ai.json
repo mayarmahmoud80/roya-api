@@ -1,0 +1,272 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-ai-provider",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI provider (generic)",
+        "ar": "مزود الذكاء الاصطناعي (عام)"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Legacy generic AI provider; prefer a model-specific node.",
+        "ar": "عقدة مزود ذكاء اصطناعي عامة، يُفضَّل استخدام عقدة لنموذج محدد."
+      }
+    },
+    "scope": "global",
+    "status": "inactive",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "aiProvider",
+      "category": "ai",
+      "builderCategoryKey": "reasoning",
+      "inputs": [
+        {
+          "key": "context",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "context",
+              "ar": "context"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["object", "schema", "array", "any"]
+        },
+        {
+          "key": "prompt",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "prompt",
+              "ar": "prompt"
+            }
+          },
+          "valueType": "prompt",
+          "required": false,
+          "minConnections": 0,
+          "compatibleValueTypes": ["prompt", "string", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "result",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "result",
+              "ar": "result"
+            }
+          },
+          "valueType": "result",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["result", "object", "any"]
+        }
+      ],
+      "executionRole": "ai",
+      "defaultRequired": true,
+      "timeoutMs": 120000,
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "backoffMs": 1000
+      }
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-ai-openai-gpt54-mini",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI GPT-5.4 mini",
+        "ar": "OpenAI GPT-5.4 mini"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Fast, low-cost OpenAI model for structured generation.",
+        "ar": "نموذج سريع ومنخفض التكلفة لتوليد مخرجات منظّمة."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "aiProvider",
+      "category": "ai",
+      "builderCategoryKey": "reasoning",
+      "providerKey": "OpenAI:gpt-5.4-mini",
+      "inputs": [
+        {
+          "key": "context",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "context",
+              "ar": "context"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["object", "schema", "array", "any"]
+        },
+        {
+          "key": "prompt",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "prompt",
+              "ar": "prompt"
+            }
+          },
+          "valueType": "prompt",
+          "required": false,
+          "minConnections": 0,
+          "compatibleValueTypes": ["prompt", "string", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "result",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "result",
+              "ar": "result"
+            }
+          },
+          "valueType": "result",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["result", "object", "any"]
+        }
+      ],
+      "executionRole": "ai",
+      "defaultRequired": true,
+      "timeoutMs": 120000,
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "backoffMs": 1000
+      },
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "temperature": {
+            "type": "number"
+          },
+          "instruction": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-ai-openai-gpt54",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI GPT-5.4",
+        "ar": "OpenAI GPT-5.4"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Higher-quality OpenAI model for complex generation.",
+        "ar": "نموذج OpenAI أعلى جودة للتوليد المعقّد."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "aiProvider",
+      "category": "ai",
+      "builderCategoryKey": "reasoning",
+      "providerKey": "OpenAI:gpt-5.4",
+      "inputs": [
+        {
+          "key": "context",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "context",
+              "ar": "context"
+            }
+          },
+          "valueType": "object",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["object", "schema", "array", "any"]
+        },
+        {
+          "key": "prompt",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "prompt",
+              "ar": "prompt"
+            }
+          },
+          "valueType": "prompt",
+          "required": false,
+          "minConnections": 0,
+          "compatibleValueTypes": ["prompt", "string", "any"]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "result",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "result",
+              "ar": "result"
+            }
+          },
+          "valueType": "result",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["result", "object", "any"]
+        }
+      ],
+      "executionRole": "ai",
+      "defaultRequired": true,
+      "timeoutMs": 180000,
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "backoffMs": 1000
+      },
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "temperature": {
+            "type": "number"
+          },
+          "instruction": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+]

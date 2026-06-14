@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(git:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(mongosh:*)",
+      "Bash(brew services:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(lsof:*)",
+      "Bash(cat /Users/islamhaa/projects/orgs/roya/projects/roya_plus/website/royaai-plus-api/package.json | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('scripts:', list\\(d.get\\('scripts',{}\\).keys\\(\\)\\)\\); print\\('main deps:', list\\(d.get\\('dependencies',{}\\).keys\\(\\)\\)[:15]\\)\")",
+      "Bash(bash .specify/scripts/bash/create-new-feature.sh \"Refactor datasource execution logic to Strategy Pattern with Provider Registry\" --json --short-name \"datasource-provider-registry\")",
+      "Bash(bash .specify/scripts/bash/check-prerequisites.sh --json --paths-only)",
+      "Bash(bash .specify/scripts/bash/setup-plan.sh --json)",
+      "Bash(bash .specify/scripts/bash/update-agent-context.sh claude 2>&1)",
+      "Bash(bash .specify/scripts/bash/check-prerequisites.sh --json)",
+      "Bash(bash .specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks 2>&1)"
+    ]
+  }
+}

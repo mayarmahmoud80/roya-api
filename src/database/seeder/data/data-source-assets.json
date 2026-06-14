@@ -1,0 +1,98 @@
+[
+  {
+    "assetType": "dataSource",
+    "slug": "web-scraper",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web Scraper",
+        "ar": "جامع بيانات الويب"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Website content datasource powered by the web scraper provider."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerSlug": "web-scraper-provider",
+      "requiredInputKeys": ["websiteUrl"],
+      "outputKeys": ["pages", "metadata"]
+    }
+  },
+  {
+    "assetType": "dataSource",
+    "slug": "logo-picker",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo Picker",
+        "ar": "اختيار الشعار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo datasource powered by scraping followed by logo picking."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerSlug": "logo-picker-provider",
+      "requiredInputKeys": ["websiteUrl"],
+      "outputKeys": ["logoUrl", "candidates"]
+    }
+  },
+  {
+    "assetType": "dataSource",
+    "slug": "semrush-keywords",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Semrush Keywords",
+        "ar": "كلمات Semrush"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "SEO keyword datasource for domain-level keyword metrics."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerSlug": "semrush-provider",
+      "requiredInputKeys": ["websiteUrl"],
+      "outputKeys": ["keywords", "traffic"]
+    }
+  },
+  {
+    "assetType": "dataSource",
+    "slug": "openai-research",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Research",
+        "ar": "بحث OpenAI"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI-assisted datasource for synthesized research."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "providerSlug": "openai-output-provider",
+      "requiredInputKeys": ["websiteUrl"],
+      "outputKeys": ["researchNotes"]
+    }
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "assetType": "dictionary",
+    "slug": "builder-asset-statuses",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Builder Asset Statuses",
+        "ar": "حالات أصول البناء"
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "entries": [
+        {
+          "value": "active",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "Active",
+              "ar": "نشط"
+            }
+          }
+        },
+        {
+          "value": "inactive",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "Inactive",
+              "ar": "غير نشط"
+            }
+          }
+        },
+        {
+          "value": "archived",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "Archived",
+              "ar": "مؤرشف"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "assetType": "dictionary",
+    "slug": "builder-asset-scopes",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Builder Asset Scopes",
+        "ar": "نطاقات أصول البناء"
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "entries": [
+        {
+          "value": "global",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "Global",
+              "ar": "عام"
+            }
+          }
+        },
+        {
+          "value": "organization",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "Organization",
+              "ar": "منظمة"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

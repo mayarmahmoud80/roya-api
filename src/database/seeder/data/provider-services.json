@@ -1,0 +1,102 @@
+[
+  {
+    "assetType": "providerService",
+    "slug": "web-scraper-service",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Web Scraper Service",
+        "ar": "خدمة جمع بيانات الويب"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Fetches and normalizes website page content."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceKey": "web-scraper-service",
+      "capability": "web-scraping",
+      "retryable": true,
+      "timeoutMs": 30000
+    }
+  },
+  {
+    "assetType": "providerService",
+    "slug": "logo-picker-service",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Logo Picker Service",
+        "ar": "خدمة اختيار الشعار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Selects the best logo candidate from scraped website assets."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceKey": "logo-picker-service",
+      "capability": "logo-picking",
+      "retryable": true,
+      "timeoutMs": 15000
+    }
+  },
+  {
+    "assetType": "providerService",
+    "slug": "semrush-keyword-service",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Semrush Keyword Service",
+        "ar": "خدمة كلمات Semrush"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Retrieves keyword and SEO metrics from Semrush."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceKey": "semrush-keyword-service",
+      "capability": "seo-keywords",
+      "retryable": true,
+      "timeoutMs": 45000
+    }
+  },
+  {
+    "assetType": "providerService",
+    "slug": "openai-generation-service",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "OpenAI Generation Service",
+        "ar": "خدمة توليد OpenAI"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Generates structured output from report inputs and provider data."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {
+      "serviceKey": "openai-generation-service",
+      "capability": "ai-generation",
+      "retryable": true,
+      "timeoutMs": 60000
+    }
+  }
+]

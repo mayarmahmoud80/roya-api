@@ -1,0 +1,252 @@
+{
+  "reportType": {
+    "slug": "brand-overview",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Brand Overview",
+        "ar": "نظرة عامة على العلامة التجارية"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "A comprehensive brand identity report covering DNA, visual identity, tone of voice, strategic positioning, gap analysis, and perception risks.",
+        "ar": "تقرير شامل لهوية العلامة التجارية يغطي الحمض النووي للبراند، الهوية البصرية، أسلوب الصوت، التموضع الاستراتيجي، تحليل الفجوات، ومخاطر الإدراك."
+      }
+    },
+    "estimatedDuration": 120,
+    "isStandalone": true,
+    "standalonePrice": 49
+  },
+  "defaultLanguage": "en",
+  "dynamicFlow": {
+    "flowNodes": [
+      {
+        "nodeId": "n-input-url",
+        "definitionAssetSlug": "nd-input-url",
+        "nodeKind": "inputField",
+        "required": true,
+        "config": {
+          "inputKey": "websiteUrl"
+        },
+        "position": {
+          "x": 40,
+          "y": 60
+        }
+      },
+      {
+        "nodeId": "n-input-brand",
+        "definitionAssetSlug": "nd-input-text",
+        "nodeKind": "inputField",
+        "required": false,
+        "config": {
+          "inputKey": "brandName"
+        },
+        "position": {
+          "x": 40,
+          "y": 220
+        }
+      },
+      {
+        "nodeId": "n-ds-web",
+        "definitionAssetSlug": "nd-source-web-scraper",
+        "nodeKind": "dataSource",
+        "required": true,
+        "config": {},
+        "position": {
+          "x": 260,
+          "y": 40
+        }
+      },
+      {
+        "nodeId": "n-ds-logo",
+        "definitionAssetSlug": "nd-source-logo-picker",
+        "nodeKind": "dataSource",
+        "required": false,
+        "config": {
+          "htmlInputKey": "pageHtml",
+          "baseUrlInputKey": "websiteUrl",
+          "uploadLabelInputKey": "websiteUrl"
+        },
+        "position": {
+          "x": 260,
+          "y": 220
+        }
+      },
+      {
+        "nodeId": "n-map",
+        "definitionAssetSlug": "nd-mapper",
+        "nodeKind": "transform",
+        "required": true,
+        "mapperRules": [],
+        "position": {
+          "x": 500,
+          "y": 140
+        }
+      },
+      {
+        "nodeId": "n-out",
+        "definitionAssetSlug": "nd-output-schema",
+        "nodeKind": "outputSchema",
+        "required": true,
+        "config": {
+          "outputSchema": {
+            "brandName": "string",
+            "overallScore": "number",
+            "executiveSummary": "string",
+            "strengths": "array",
+            "improvements": "array",
+            "nextSteps": "array"
+          }
+        },
+        "position": {
+          "x": 720,
+          "y": 140
+        }
+      },
+      {
+        "nodeId": "n-ai",
+        "definitionAssetSlug": "nd-ai-openai-gpt54-mini",
+        "nodeKind": "aiProvider",
+        "required": true,
+        "config": {
+          "temperature": 0.2,
+          "promptSubjectInputKey": "websiteUrl",
+          "instruction": "You are a senior brand strategist. Use the input fields and datasource payloads to produce the configured output schema. Preserve partial provider data and mark unavailable values as null."
+        },
+        "position": {
+          "x": 940,
+          "y": 140
+        }
+      },
+      {
+        "nodeId": "n-term",
+        "definitionAssetSlug": "nd-terminal-ai",
+        "nodeKind": "terminal",
+        "required": true,
+        "terminalConfig": {
+          "terminalKey": "brandReport",
+          "required": true,
+          "acceptedSourceKinds": ["aiProvider"],
+          "outputMode": "aiResult"
+        },
+        "position": {
+          "x": 1160,
+          "y": 140
+        }
+      }
+    ],
+    "flowConnections": [
+      {
+        "connectionId": "c-url-web",
+        "source": {
+          "nodeId": "n-input-url",
+          "portKey": "value"
+        },
+        "target": {
+          "nodeId": "n-ds-web",
+          "portKey": "websiteUrl"
+        },
+        "required": true
+      },
+      {
+        "connectionId": "c-web-logo",
+        "source": {
+          "nodeId": "n-ds-web",
+          "portKey": "html"
+        },
+        "target": {
+          "nodeId": "n-ds-logo",
+          "portKey": "pageHtml"
+        },
+        "required": true
+      },
+      {
+        "connectionId": "c-url-logo",
+        "source": {
+          "nodeId": "n-input-url",
+          "portKey": "value"
+        },
+        "target": {
+          "nodeId": "n-ds-logo",
+          "portKey": "websiteUrl"
+        },
+        "required": false
+      },
+      {
+        "connectionId": "c-brand-logo",
+        "source": {
+          "nodeId": "n-input-brand",
+          "portKey": "value"
+        },
+        "target": {
+          "nodeId": "n-ds-logo",
+          "portKey": "brandName"
+        },
+        "required": false
+      },
+      {
+        "connectionId": "c-web-map",
+        "source": {
+          "nodeId": "n-ds-web",
+          "portKey": "payload"
+        },
+        "target": {
+          "nodeId": "n-map",
+          "portKey": "in"
+        },
+        "required": true
+      },
+      {
+        "connectionId": "c-logo-map",
+        "source": {
+          "nodeId": "n-ds-logo",
+          "portKey": "payload"
+        },
+        "target": {
+          "nodeId": "n-map",
+          "portKey": "slot2"
+        },
+        "required": false
+      },
+      {
+        "connectionId": "c-map-out",
+        "source": {
+          "nodeId": "n-map",
+          "portKey": "out"
+        },
+        "target": {
+          "nodeId": "n-out",
+          "portKey": "in"
+        },
+        "required": true
+      },
+      {
+        "connectionId": "c-out-ai",
+        "source": {
+          "nodeId": "n-out",
+          "portKey": "schema"
+        },
+        "target": {
+          "nodeId": "n-ai",
+          "portKey": "context"
+        },
+        "required": true
+      },
+      {
+        "connectionId": "c-ai-term",
+        "source": {
+          "nodeId": "n-ai",
+          "portKey": "result"
+        },
+        "target": {
+          "nodeId": "n-term",
+          "portKey": "in"
+        },
+        "required": true
+      }
+    ]
+  },
+  "analysisTypeSlug": "brand"
+}

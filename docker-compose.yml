@@ -1,0 +1,18 @@
+# THIS DOCKERFILE IS INTENDED FOR DEVELOPMENT ENVIRONMENTS
+# DO NOT USE THIS FOR PRODUCTION USAGES.
+
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodb_data:/data/db'
+    environment:
+      - MONGO_INITDB_DATABASE=nestjs
+
+volumes:
+  mongodb_data:
+    driver: local

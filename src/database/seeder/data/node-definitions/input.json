@@ -1,0 +1,197 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-input-field",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Input field node",
+        "ar": "عقدة حقل إدخال"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Exposes a single user input to the flow graph.",
+        "ar": "يعرض حقل إدخال المستخدم للرسم البياني."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "inputField",
+      "category": "input",
+      "builderCategoryKey": "intake",
+      "inputs": [],
+      "outputs": [
+        {
+          "key": "value",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "value",
+              "ar": "value"
+            }
+          },
+          "valueType": "string",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["string", "any"]
+        }
+      ],
+      "executionRole": "source",
+      "defaultRequired": true
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-input-url",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "URL input",
+        "ar": "إدخال رابط"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "User-provided URL, validated as http(s).",
+        "ar": "رابط يدخله المستخدم مع التحقق من صيغته."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "inputField",
+      "category": "input",
+      "builderCategoryKey": "intake",
+      "inputs": [],
+      "outputs": [
+        {
+          "key": "value",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "value",
+              "ar": "value"
+            }
+          },
+          "valueType": "string",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["string", "any"]
+        }
+      ],
+      "executionRole": "source",
+      "defaultRequired": true,
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "inputKey": {
+            "type": "string"
+          },
+          "format": {
+            "const": "uri"
+          }
+        }
+      }
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-input-text",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Text input",
+        "ar": "إدخال نصي"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Single-line user text.",
+        "ar": "نص مفرد يدخله المستخدم."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "inputField",
+      "category": "input",
+      "builderCategoryKey": "intake",
+      "inputs": [],
+      "outputs": [
+        {
+          "key": "value",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "value",
+              "ar": "value"
+            }
+          },
+          "valueType": "string",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["string", "any"]
+        }
+      ],
+      "executionRole": "source",
+      "defaultRequired": false
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-input-enum",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Choice input",
+        "ar": "إدخال اختيار"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "One value chosen from a list of options.",
+        "ar": "قيمة واحدة تُختار من قائمة خيارات."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "inputField",
+      "category": "input",
+      "builderCategoryKey": "intake",
+      "inputs": [],
+      "outputs": [
+        {
+          "key": "value",
+          "direction": "output",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "value",
+              "ar": "value"
+            }
+          },
+          "valueType": "string",
+          "required": true,
+          "minConnections": 0,
+          "compatibleValueTypes": ["string", "any"]
+        }
+      ],
+      "executionRole": "source",
+      "defaultRequired": false
+    }
+  }
+]

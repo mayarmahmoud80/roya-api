@@ -1,0 +1,107 @@
+[
+  {
+    "key": "brand",
+    "slug": "brand",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Brand",
+        "ar": "العلامة التجارية"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Brand identity, positioning, perception, and narrative analysis.",
+        "ar": "تحليل هوية العلامة التجارية وتموضعها وصورتها وسردها."
+      }
+    },
+    "icon": "pi pi-star",
+    "sortOrder": 0,
+    "isSystem": true
+  },
+  {
+    "key": "seo",
+    "slug": "seo",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "SEO",
+        "ar": "تحسين محركات البحث"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Organic search visibility, keywords, and technical SEO analysis.",
+        "ar": "تحليل الظهور العضوي والكلمات المفتاحية والجوانب التقنية لتحسين محركات البحث."
+      }
+    },
+    "icon": "pi pi-search",
+    "sortOrder": 1,
+    "isSystem": true
+  },
+  {
+    "key": "market",
+    "slug": "market",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Market",
+        "ar": "السوق"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Market opportunity, demand signals, competitive context, and growth analysis.",
+        "ar": "تحليل فرص السوق وإشارات الطلب والسياق التنافسي والنمو."
+      }
+    },
+    "icon": "pi pi-chart-bar",
+    "sortOrder": 2,
+    "isSystem": true
+  },
+  {
+    "key": "financial",
+    "slug": "financial",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Financial",
+        "ar": "المالي"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Financial health, efficiency, and performance analysis.",
+        "ar": "تحليل الصحة المالية والكفاءة والأداء."
+      }
+    },
+    "icon": "pi pi-dollar",
+    "sortOrder": 3,
+    "isSystem": true
+  },
+  {
+    "key": "competitor",
+    "slug": "competitor",
+    "localizedName": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Competitor",
+        "ar": "المنافسون"
+      }
+    },
+    "localizedDescription": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Competitive landscape, positioning, and gap analysis.",
+        "ar": "تحليل المشهد التنافسي والتموضع والفجوات."
+      }
+    },
+    "icon": "pi pi-users",
+    "sortOrder": 4,
+    "isSystem": true
+  }
+]

@@ -1,0 +1,207 @@
+// Jenkinsfile.dev
+// ----------------
+// DEV pipeline for roya-plus-api.
+//
+// Flow:  checkout -> build image -> push to GHCR
+//                 -> SSH to app host: login, pull, stop, remove, run, verify, cleanup.
+//
+// Credentials used (pre-configured in Jenkins):
+//   - ghcr-roya-plus : GHCR Username/Password (PAT with write:packages)
+//   - app-server-1   : SSH private key for the deploy host
+//
+// No secrets are hardcoded in this file. At deploy time Jenkins SSHes to 10.10.0.13
+// (CentralizedDevTools), reads Vault KV, and SCPs the env file to 10.10.0.20.
+// The container starts with --env-file; Jenkins never handles secret values.
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        timeout(time: 30, unit: 'MINUTES')
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        // --- Image coordinates ---
+        REGISTRY       = 'ghcr.io'
+        GHCR_OWNER     = 'alsairafi-c'
+        IMAGE_NAME     = 'roya-plus-api'
+        IMAGE_REPO     = "${REGISTRY}/${GHCR_OWNER}/${IMAGE_NAME}"
+        IMAGE_TAG      = "dev-${env.BUILD_NUMBER}"
+        IMAGE_REF      = "${IMAGE_REPO}:${IMAGE_TAG}"
+        IMAGE_ROLLING  = "${IMAGE_REPO}:dev"
+
+        // --- Deploy target ---
+        DEPLOY_HOST    = '10.10.0.20'
+        DEPLOY_USER    = 'dev'
+        CONTAINER_NAME = 'roya-plus-api'
+        HOST_PORT      = '3000'
+        CONTAINER_PORT = '3000'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                sh '''
+                    set -eu
+                    docker build \\
+                        --pull \\
+                        -f Dockerfile.build \\
+                        -t "${IMAGE_REF}" \\
+                        -t "${IMAGE_ROLLING}" \\
+                        .
+                '''
+            }
+        }
+
+        stage('Push to GHCR') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'ghcr-roya-plus',
+                    usernameVariable: 'GHCR_USER',
+                    passwordVariable: 'GHCR_TOKEN'
+                )]) {
+                    sh '''
+                        set -eu
+                        echo "${GHCR_TOKEN}" | docker login "${REGISTRY}" -u "${GHCR_USER}" --password-stdin
+                        docker push "${IMAGE_REF}"
+                        docker push "${IMAGE_ROLLING}"
+                        docker logout "${REGISTRY}" >/dev/null 2>&1 || true
+                    '''
+                }
+            }
+        }
+
+        stage('Provision env on app server') {
+            steps {
+                sshagent(credentials: ['CentralizedDevTools', 'app-server-1']) {
+                    sh '''#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> Ensuring target directory exists on app server"
+ssh -n -o StrictHostKeyChecking=no -o BatchMode=yes "${DEPLOY_USER}@${DEPLOY_HOST}" \
+    "mkdir -p /opt/roya-plus-api && chmod 700 /opt/roya-plus-api"
+
+echo "==> Reading secret from Vault and streaming .env to app server"
+ssh -n -o StrictHostKeyChecking=no -o BatchMode=yes centraliz@10.10.0.13 \
+    "docker exec vault sh -c 'export VAULT_ADDR=http://127.0.0.1:8200 && vault kv get -format=json roya-plus-api/dev'" \
+    | jq -r '.data.data | to_entries[] | .key + "=" + (.value|tostring)' \
+    | ssh -o StrictHostKeyChecking=no -o BatchMode=yes "${DEPLOY_USER}@${DEPLOY_HOST}" \
+        "set -eu; umask 077; TMP=/opt/roya-plus-api/.env.tmp; trap 'rm -f \\$TMP' EXIT; cat > \\$TMP; mv \\$TMP /opt/roya-plus-api/.env; chmod 600 /opt/roya-plus-api/.env; trap - EXIT"
+
+echo "==> Verifying .env exists on app server"
+ssh -n -o StrictHostKeyChecking=no -o BatchMode=yes "${DEPLOY_USER}@${DEPLOY_HOST}" \
+    "test -s /opt/roya-plus-api/.env && ls -l /opt/roya-plus-api/.env"
+
+echo "==> Env file provisioned successfully"
+'''
+                }
+            }
+        }
+
+        stage('Deploy to app server') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'ghcr-roya-plus',
+                    usernameVariable: 'GHCR_USER',
+                    passwordVariable: 'GHCR_TOKEN'
+                )]) {
+                    sshagent(credentials: ['app-server-1']) {
+                        // Values are passed as positional args to `bash -s`, so
+                        // there is no mixing of Groovy and shell interpolation
+                        // and no reliance on sshd AcceptEnv.
+                        sh '''
+                            set -eu
+                            ssh -o StrictHostKeyChecking=no -o BatchMode=yes \\
+                                "${DEPLOY_USER}@${DEPLOY_HOST}" \\
+                                bash -s -- \\
+                                "${REGISTRY}" \\
+                                "${GHCR_USER}" \\
+                                "${GHCR_TOKEN}" \\
+                                "${IMAGE_REF}" \\
+                                "${CONTAINER_NAME}" \\
+                                "${HOST_PORT}" \\
+                                "${CONTAINER_PORT}" \\
+                                <<'REMOTE'
+set -eu
+
+REGISTRY="$1"
+GHCR_USER="$2"
+GHCR_TOKEN="$3"
+IMAGE_REF="$4"
+CONTAINER_NAME="$5"
+HOST_PORT="$6"
+CONTAINER_PORT="$7"
+ENV_FILE="/opt/roya-plus-api/.env"
+
+echo "==> Verifying env file"
+if [ ! -f "${ENV_FILE}" ]; then
+    echo "!! ERROR: ${ENV_FILE} not found — aborting deployment"
+    exit 1
+fi
+
+echo "==> Logging in to ${REGISTRY}"
+echo "${GHCR_TOKEN}" | docker login "${REGISTRY}" -u "${GHCR_USER}" --password-stdin
+
+echo "==> Pulling ${IMAGE_REF}"
+docker pull "${IMAGE_REF}"
+
+if docker ps -a --format '{{.Names}}' | grep -Fxq "${CONTAINER_NAME}"; then
+    echo "==> Stopping existing container"
+    docker stop "${CONTAINER_NAME}" >/dev/null 2>&1 || true
+    echo "==> Removing existing container"
+    docker rm   "${CONTAINER_NAME}" >/dev/null 2>&1 || true
+fi
+
+echo "==> Starting new container"
+docker run -d \\
+    --name "${CONTAINER_NAME}" \\
+    --restart unless-stopped \\
+    -p "${HOST_PORT}:${CONTAINER_PORT}" \\
+    --env-file "${ENV_FILE}" \\
+    "${IMAGE_REF}"
+
+echo "==> Verifying container is running"
+sleep 3
+if ! docker ps \\
+        --filter "name=^${CONTAINER_NAME}$" \\
+        --filter "status=running" \\
+        --format '{{.Names}}' | grep -Fxq "${CONTAINER_NAME}"; then
+    echo "!! Container ${CONTAINER_NAME} is not running after deploy"
+    docker logs --tail 200 "${CONTAINER_NAME}" || true
+    exit 1
+fi
+
+echo "==> Pruning dangling images"
+docker image prune -f >/dev/null 2>&1 || true
+
+echo "==> Logging out of ${REGISTRY}"
+docker logout "${REGISTRY}" >/dev/null 2>&1 || true
+
+echo "==> Deploy OK: ${CONTAINER_NAME} -> ${IMAGE_REF}"
+REMOTE
+                        '''
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up locally built images on the Jenkins agent.
+            sh '''
+                docker image rm "${IMAGE_REF}"     >/dev/null 2>&1 || true
+                docker image rm "${IMAGE_ROLLING}" >/dev/null 2>&1 || true
+            '''
+        }
+    }
+}

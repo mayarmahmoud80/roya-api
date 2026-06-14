@@ -1,0 +1,140 @@
+[
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-terminal",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Terminal node",
+        "ar": "عقدة نهائية"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Generic flow terminator; stores the final payload of a branch.",
+        "ar": "عقدة نهاية عامة؛ تخزّن الحمولة النهائية لفرع التدفق."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "terminal",
+      "category": "terminal",
+      "builderCategoryKey": "delivery",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "any",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["any"]
+        }
+      ],
+      "outputs": [],
+      "executionRole": "terminal",
+      "defaultRequired": true
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-terminal-ai",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "AI result terminal",
+        "ar": "نهاية نتيجة ذكاء اصطناعي"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Stores the JSON produced by an AI node.",
+        "ar": "يخزّن المخرج الذي يُنتجه نموذج الذكاء الاصطناعي."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "terminal",
+      "category": "terminal",
+      "builderCategoryKey": "delivery",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "result",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["result", "object", "any"]
+        }
+      ],
+      "outputs": [],
+      "executionRole": "terminal",
+      "defaultRequired": true
+    }
+  },
+  {
+    "assetType": "nodeDefinition",
+    "slug": "nd-terminal-schema",
+    "name": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Schema terminal",
+        "ar": "نهاية مخطط مخرجات"
+      }
+    },
+    "description": {
+      "defaultLanguage": "en",
+      "values": {
+        "en": "Stores an output schema branch without an AI call.",
+        "ar": "يخزّن مخطط مخرجات بدون استدعاء ذكاء اصطناعي."
+      }
+    },
+    "scope": "global",
+    "status": "active",
+    "metadata": {},
+    "nodeDefinition": {
+      "nodeKind": "terminal",
+      "category": "terminal",
+      "builderCategoryKey": "delivery",
+      "inputs": [
+        {
+          "key": "in",
+          "direction": "input",
+          "label": {
+            "defaultLanguage": "en",
+            "values": {
+              "en": "in",
+              "ar": "in"
+            }
+          },
+          "valueType": "schema",
+          "required": true,
+          "minConnections": 1,
+          "compatibleValueTypes": ["schema", "object", "any"]
+        }
+      ],
+      "outputs": [],
+      "executionRole": "terminal",
+      "defaultRequired": true
+    }
+  }
+]
